@@ -4,15 +4,80 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity"
+    android:background="@color/LightBrown"
+    android:padding="5dp">
+
+<com.airbnb.lottie.LottieAnimationView
+    android:id="@+id/lottie_logo"
+    android:layout_width="match_parent"
+    android:layout_height="200dp"
+    app:layout_constraintTop_toTopOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:lottie_rawRes="@raw/coffee"
+    app:lottie_autoPlay="true"
+    app:lottie_loop="true"/>
 
     <TextView
-        android:layout_width="wrap_content"
+        android:id="@+id/title_tv"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:gravity="center"
+        android:text="Cup_A_Coffee"
+        android:textSize="35sp"
+        android:textStyle="bold|italic"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@id/lottie_logo" />
+
+
+    <ScrollView
+        android:id="@+id/description_sv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scrollbars="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/title_tv">
+
+        <LinearLayout
+            android:id="@+id/description_nl"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/aboutUs_tv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:gravity="center"
+                android:text="About Us"
+                android:textColor="@color/white"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/shopDescription_tv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:padding="20dp"
+                android:text="Taste and See Coffee Shop and Gallery offers a unique coffee house environment unlike any other in Macon. We are not only a place to drop in and get your morning cup of coffee (although you are more than welcome to do that), we are a place where you can sit down and enjoy that tailor-made cup of coffee. If you need to work, we have a seating area created specifically for you. If you need to rest, we have a soft-seating area in front of a stone fire place that is perfect for your weary mind and body. We offer a delicious variety of coffee roasted in house made by our professionally trained baristas. We have everything from classic coffee to our house made specialty beverages.  All of our sauces and syrups are made in-house with all natural ingredients (no chemicals or preservatives) ensuring you the highest quality in taste and health.  You can complete your coffee with one of our delicious sweet treats made by our very own baker. We look forward to serving you at Taste and See Coffee Shop and Gallery!"
+                android:textColor="@color/white" />
+        </LinearLayout>
+    </ScrollView>
+        <Button
+            android:id="@+id/start_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:text="START ORDERING"
+            android:textSize="20sp"
+            android:layout_marginBottom="10dp"
+            android:textColor="@color/white"
+            android:background="@drawable/button_background"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
