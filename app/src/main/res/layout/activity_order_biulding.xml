@@ -4,6 +4,34 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.OrderBuildingActivity">
+    tools:context=".ui.activity.OrderBuildingActivity"
+    android:background="@color/LightBrown">
+
+    <TextView
+        android:id="@+id/selectCoffee_tv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:text="Select a Coffee"
+        android:textColor="@color/DarkBrown"
+        android:textSize="30sp"
+        android:textStyle="bold|italic"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="30dp"/>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/selectCoffee_tv"
+        android:text="Americano"
+        android:textAllCaps="false"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:textColor="@color/DarkBrown"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/coffee_types_background"
+        android:padding="10dp"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

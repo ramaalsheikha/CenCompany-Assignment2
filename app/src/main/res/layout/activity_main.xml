@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity"
+    tools:context=".ui.activity.MainActivity"
     android:background="@color/LightBrown"
     android:padding="5dp">
 
@@ -78,6 +78,6 @@
             android:textSize="20sp"
             android:layout_marginBottom="10dp"
             android:textColor="@color/white"
-            android:background="@drawable/button_background"/>
+            android:background="@drawable/start_btn_background"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
