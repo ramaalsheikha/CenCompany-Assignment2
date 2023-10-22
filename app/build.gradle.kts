@@ -43,6 +43,7 @@ dependencies {
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
     testImplementation("junit:junit:4.13.2")
     implementation ("com.airbnb.android:lottie:6.1.0")
+    implementation("androidx.fragment:fragment-ktx:1.6.1")
 }
 
 fun viewBinding(b: Boolean) {
