@@ -18,6 +18,7 @@ class OrderBuildingActivity : AppCompatActivity() {
     private fun showCoffeeOptionsFragment(){
         addFragment(R.id.coffee_options_fragment,optionsFragment)
     }
+
     private fun addFragment(id:Int,fragment:Fragment){
         val transaction = supportFragmentManager.beginTransaction()
         transaction.add(id,fragment)

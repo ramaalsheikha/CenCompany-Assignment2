@@ -17,8 +17,7 @@
         android:textSize="18sp"
         android:textStyle="bold"
         android:textColor="@drawable/text_color_coffee_type"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="20dp"
+        android:layout_margin="20dp"
         android:background="@drawable/coffee_types_background"
         android:padding="10dp"/>
     <Button
@@ -34,8 +33,7 @@
         android:textSize="18sp"
         android:textStyle="bold"
         android:textColor="@drawable/text_color_coffee_type"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="20dp"
+        android:layout_margin="20dp"
         android:background="@drawable/coffee_types_background"
         android:padding="10dp"/>
     <Button
@@ -50,11 +48,10 @@
         android:textSize="18sp"
         android:textStyle="bold"
         android:textColor="@drawable/text_color_coffee_type"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="20dp"
+        android:layout_margin="20dp"
         android:background="@drawable/coffee_types_background"
-        android:paddingStart="35dp"
-        android:paddingEnd="35dp"/>
+        android:paddingStart="37dp"
+        android:paddingEnd="37dp"/>
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -67,8 +64,7 @@
         android:gravity="center"
         android:textStyle="bold"
         android:textColor="@drawable/text_color_coffee_type"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="20dp"
+       android:layout_margin="20dp"
         android:background="@drawable/coffee_types_background"
         android:paddingStart="18dp"
         android:paddingEnd="18dp"/>
