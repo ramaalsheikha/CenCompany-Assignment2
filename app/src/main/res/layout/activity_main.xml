@@ -56,7 +56,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:gravity="center"
-                android:text="About Us"
+                android:text="@string/Title"
                 android:textColor="@color/white"
                 android:textSize="18sp" />
 
@@ -66,7 +66,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:padding="20dp"
-                android:text="Taste and See Coffee Shop and Gallery offers a unique coffee house environment unlike any other in Macon. We are not only a place to drop in and get your morning cup of coffee (although you are more than welcome to do that), we are a place where you can sit down and enjoy that tailor-made cup of coffee. If you need to work, we have a seating area created specifically for you. If you need to rest, we have a soft-seating area in front of a stone fire place that is perfect for your weary mind and body. We offer a delicious variety of coffee roasted in house made by our professionally trained baristas. We have everything from classic coffee to our house made specialty beverages.  All of our sauces and syrups are made in-house with all natural ingredients (no chemicals or preservatives) ensuring you the highest quality in taste and health.  You can complete your coffee with one of our delicious sweet treats made by our very own baker. We look forward to serving you at Taste and See Coffee Shop and Gallery!"
+                android:text="@string/paragraph"
                 android:textColor="@color/white" />
         </LinearLayout>
     </ScrollView>
@@ -82,7 +82,6 @@
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        />
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
