@@ -14,4 +14,8 @@
         android:id="@+id/homeFragment"
         android:name="com.example.myapplication.ui.activity.HomeFragment"
         android:label="HomeFragment" />
+    <fragment
+        android:id="@+id/paymentFragment"
+        android:name="com.example.myapplication.ui.activity.PaymentFragment"
+        android:label="PaymentFragment" />
 </navigation>

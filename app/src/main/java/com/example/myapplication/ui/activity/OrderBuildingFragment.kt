@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import com.example.myapplication.R
 import com.example.myapplication.databinding.FragmentHomeBinding
 import com.example.myapplication.databinding.FragmentOrderBuildingBinding
@@ -23,7 +24,14 @@ class OrderBuildingFragment:Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         showCoffeeSize()
         showCheckBoxOptions()
+        initListener()
 
+    }
+
+    private fun initListener() {
+        binding.btnContinue.setOnClickListener {
+            findNavController().navigate(R.id.paymentFragment)
+        }
     }
 
     private fun showCheckBoxOptions() {
