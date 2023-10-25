@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/LightBrown">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar_home"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/MediumBrown"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:title="Welcome"
+        app:titleTextColor="@color/white" />
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/lottie_logo"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        app:layout_constraintTop_toBottomOf="@id/toolbar_home"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:lottie_rawRes="@raw/coffee"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true"/>
+
+    <TextView
+        android:id="@+id/tv_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="Cup_A_Coffee"
+        android:textSize="35sp"
+        android:textStyle="bold|italic"
+        android:layout_marginBottom="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/lottie_logo" />
+
+
+    <ScrollView
+        android:id="@+id/sv_description"
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        android:scrollbars="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/tv_title"
+        android:layout_marginTop="65dp"
+        android:layout_marginBottom="20dp">
+
+        <LinearLayout
+            android:id="@+id/nl_description"
+            android:layout_width="wrap_content"
+            android:layout_height="250dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_aboutUs"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:gravity="center"
+                android:text="@string/Title"
+                android:textColor="@color/white"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/tv_shopDescription"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:padding="20dp"
+                android:text="@string/paragraph"
+                android:textColor="@color/white" />
+        </LinearLayout>
+    </ScrollView>
+
+    <Button
+        android:id="@+id/btn_start"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/start_btn_background"
+        android:text="START ORDERING"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
