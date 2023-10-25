@@ -135,14 +135,13 @@
             app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginTop="20dp"
             android:orientation="horizontal"
-            android:gravity="center"
-            android:layout_marginStart="20dp">
+            android:gravity="center">
             <RadioButton
                 android:id="@+id/rb_small"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:text="Small"
-                android:textSize="16sp"
+                android:textSize="15sp"
                 android:textStyle="bold"
                 android:textColor="@color/DarkBrown"
                 android:layout_weight="1"/>
@@ -151,7 +150,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:text="Medium"
-                android:textSize="16sp"
+                android:textSize="15sp"
                 android:textStyle="bold"
                 android:textColor="@color/DarkBrown"
                 android:layout_weight="1"/>
@@ -160,7 +159,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:text="Large"
-                android:textSize="16sp"
+                android:textSize="15sp"
                 android:textStyle="bold"
                 android:textColor="@color/DarkBrown"
                 android:layout_weight="1"/>
@@ -263,7 +262,7 @@
         android:textSize="25sp"
         android:layout_margin="20dp"
         android:textColor="@color/white"
-        android:background="@drawable/false_type_btn_background"/>
+        android:background="@drawable/coffee_types_background"/>
     </LinearLayout>
 
 </ScrollView>

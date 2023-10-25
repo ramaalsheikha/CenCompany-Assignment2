@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/LightBrown">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/tv_enter"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:text="Enter Pickup Info"
+            android:textSize="25sp"
+            android:layout_margin="10dp"
+            android:textStyle="bold|italic"
+            android:textColor="@color/DarkBrown"
+            android:layout_marginBottom="20dp" />
+        <TextView
+            android:id="@+id/tv_full_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/tv_enter"
+            app:layout_constraintStart_toStartOf="parent"
+            android:text="Full Name"
+            android:textSize="20sp"
+            android:layout_margin="20dp"
+            android:textStyle="bold"
+            android:textColor="@color/DarkBrown"/>
+        <EditText
+            android:id="@+id/et_full_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/tv_full_name"
+            app:layout_constraintStart_toStartOf="parent"
+            android:hint="John Doe"
+            android:layout_margin="20dp"
+            android:textColor="@color/DarkBrown"
+            android:layout_marginTop="20dp"/>
+        <TextView
+            android:id="@+id/tv_phone_number"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/et_full_name"
+            app:layout_constraintStart_toStartOf="parent"
+            android:text="Phone Number"
+            android:textSize="20sp"
+            android:layout_margin="20dp"
+            android:textStyle="bold"
+            android:textColor="@color/DarkBrown"/>
+        <EditText
+            android:id="@+id/et_phone_number"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/tv_phone_number"
+            app:layout_constraintStart_toStartOf="parent"
+            android:hint="444-444-444"
+            android:layout_margin="20dp"
+            android:textColor="@color/DarkBrown"
+            android:layout_marginTop="20dp"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+</LinearLayout>

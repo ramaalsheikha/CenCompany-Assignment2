@@ -21,8 +21,6 @@ class OrderBuildingFragment:Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-
-
         showCoffeeSize()
         showCheckBoxOptions()
 
