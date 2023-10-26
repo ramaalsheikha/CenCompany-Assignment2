@@ -7,6 +7,7 @@ import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.fragment.app.Fragment
@@ -27,8 +28,29 @@ class PaymentFragment:Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         showSpinner()
+        showCardPart()
+
 
     }
+
+    private fun showCardPart() {
+        binding.spCardType.onItemSelectedListener = object :AdapterView.OnItemSelectedListener{
+            override fun onItemSelected(
+                parent: AdapterView<*>?,
+                view: View?,
+                position: Int,
+                id: Long
+            ) {
+                val selectedCardType = binding.spCardType.selectedItem.toString()
+                binding.clCard.visibility = View.VISIBLE
+            }
+
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+
+            }
+        }
+    }
+
 
     private fun showSpinner() {
         ArrayAdapter.createFromResource(
@@ -45,7 +67,9 @@ class PaymentFragment:Fragment() {
                 if (binding.etFullName.text.isNotEmpty()) {
                     binding.clSpinner.visibility = View.VISIBLE
                 }
-                else{Toast.makeText(context,"Enter you Full Name",Toast.LENGTH_SHORT).show()}
+                else{
+                    Toast.makeText(context,"Enter you Full Name",Toast.LENGTH_SHORT).show()
+                }
             }
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
 
