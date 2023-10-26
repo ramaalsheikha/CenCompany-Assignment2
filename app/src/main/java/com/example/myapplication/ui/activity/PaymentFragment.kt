@@ -1,10 +1,16 @@
 package com.example.myapplication.ui.activity
 
+
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ArrayAdapter
+import android.widget.Toast
 import androidx.fragment.app.Fragment
+import com.example.myapplication.R
 import com.example.myapplication.databinding.FragmentPaymentBinding
 
 class PaymentFragment:Fragment() {
@@ -16,15 +22,37 @@ class PaymentFragment:Fragment() {
     ): View? {
         binding = FragmentPaymentBinding.inflate(layoutInflater)
         return binding.root
+
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        showPickerTime()
+        showSpinner()
+
     }
 
-    private fun showPickerTime() {
-        if (binding.etFullName.text.isNotEmpty()&&binding.etPhoneNumber.text.isNotEmpty()){
-
+    private fun showSpinner() {
+        ArrayAdapter.createFromResource(
+            binding.spCardType.context,
+            R.array.cardType,
+            android.R.layout.simple_spinner_item
+        ).also { adapter ->
+            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+           binding.spCardType.adapter = adapter
         }
+        binding.etPhoneNumber.addTextChangedListener(object : TextWatcher {
+
+            override fun afterTextChanged(s: Editable) {
+                if (binding.etFullName.text.isNotEmpty()) {
+                    binding.clSpinner.visibility = View.VISIBLE
+                }
+                else{Toast.makeText(context,"Enter you Full Name",Toast.LENGTH_SHORT).show()}
+            }
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+
+            }
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+
+            }
+        })
     }
 }

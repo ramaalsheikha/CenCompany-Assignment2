@@ -14,7 +14,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <TextView
-            android:id="@+id/tv_enter"
+            android:id="@+id/tv_enterPickup"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layout_constraintStart_toStartOf="parent"
@@ -29,7 +29,7 @@
             android:id="@+id/tv_full_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@id/tv_enter"
+            app:layout_constraintTop_toBottomOf="@id/tv_enterPickup"
             app:layout_constraintStart_toStartOf="parent"
             android:text="Full Name"
             android:textSize="20sp"
@@ -43,6 +43,7 @@
             app:layout_constraintTop_toBottomOf="@id/tv_full_name"
             app:layout_constraintStart_toStartOf="parent"
             android:hint="John Doe"
+            android:inputType="textPersonName"
             android:layout_margin="20dp"
             android:textColor="@color/DarkBrown"
             android:layout_marginTop="20dp"/>
@@ -64,6 +65,7 @@
             app:layout_constraintTop_toBottomOf="@id/tv_phone_number"
             app:layout_constraintStart_toStartOf="parent"
             android:hint="444-444-444"
+            android:inputType="phone"
             android:layout_margin="20dp"
             android:textColor="@color/DarkBrown"
             android:layout_marginTop="20dp"/>
@@ -96,11 +98,49 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/cl_spinner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone">
+            <TextView
+                android:id="@+id/tv_enterPayment"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:text="Enter Payment Info"
+                android:textSize="25sp"
+                android:layout_margin="10dp"
+                android:textStyle="bold|italic"
+                android:textColor="@color/DarkBrown"
+                android:layout_marginBottom="20dp" />
+            <TextView
+                android:id="@+id/tv_card_type"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/tv_enterPayment"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                android:text="Card Type"
+                android:textSize = "20dp"
+                android:layout_margin="15dp"/>
+
+            <Spinner
+                android:id="@+id/sp_card_type"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/tv_card_type"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="20dp"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
     <Button
         android:id="@+id/btn_place_order"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/cl_picker_time"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:text="PLACE ORDER"
