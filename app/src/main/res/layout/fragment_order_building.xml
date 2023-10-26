@@ -10,11 +10,12 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:background="@color/LightBrown">
+
     <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar_home"
+        android:id="@+id/toolbar_pay"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        app:title="Order"
+        app:title="Pay"
         android:background="@color/MediumBrown"
         app:titleTextColor="@color/white"/>
     <androidx.constraintlayout.widget.ConstraintLayout
