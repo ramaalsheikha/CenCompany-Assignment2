@@ -18,4 +18,8 @@
         android:id="@+id/paymentFragment"
         android:name="com.example.myapplication.ui.activity.PaymentFragment"
         android:label="PaymentFragment" />
+    <fragment
+        android:id="@+id/orderSummaryFragment"
+        android:name="com.example.myapplication.ui.activity.OrderSummaryFragment"
+        android:label="OrderSummaryFragment" />
 </navigation>

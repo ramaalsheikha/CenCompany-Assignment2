@@ -11,6 +11,7 @@ import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import com.example.myapplication.R
 import com.example.myapplication.databinding.FragmentPaymentBinding
 
@@ -29,8 +30,13 @@ class PaymentFragment:Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         showSpinner()
         showCardPart()
+        initListener()
+    }
 
-
+    private fun initListener() {
+        binding.btnPlaceOrder.setOnClickListener {
+            findNavController().navigate(R.id.orderSummaryFragment)
+        }
     }
 
     private fun showCardPart() {
