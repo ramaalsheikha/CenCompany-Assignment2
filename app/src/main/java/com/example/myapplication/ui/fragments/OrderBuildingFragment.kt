@@ -1,4 +1,4 @@
-package com.example.myapplication.ui.activity
+package com.example.myapplication.ui.fragments
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -7,11 +7,10 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.myapplication.R
-import com.example.myapplication.databinding.FragmentHomeBinding
 import com.example.myapplication.databinding.FragmentOrderBuildingBinding
 
-class OrderBuildingFragment:Fragment() {
-    private lateinit var binding:FragmentOrderBuildingBinding
+class OrderBuildingFragment : Fragment() {
+    private lateinit var binding: FragmentOrderBuildingBinding
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -25,7 +24,6 @@ class OrderBuildingFragment:Fragment() {
         showCoffeeSize()
         showCheckBoxOptions()
         initListener()
-
     }
 
     private fun initListener() {
@@ -35,21 +33,25 @@ class OrderBuildingFragment:Fragment() {
     }
 
     private fun showCheckBoxOptions() {
-        val list = listOf(binding.rbSmall,binding.rbMedium,binding.rbLarg)
-   list.forEach {
-       it.setOnClickListener {
-           binding.checkBox.visibility = View.VISIBLE
-       }
-   }
+        val list = listOf(binding.rbSmall, binding.rbMedium, binding.rbLarg)
+        list.forEach {
+            it.setOnClickListener {
+                binding.checkBox.visibility = View.VISIBLE
+            }
+        }
     }
 
     private fun showCoffeeSize() {
-        val list = listOf(binding.btnAmericano,binding.btnCappuccino,binding.btnMacchiato,binding.btnLatte)
+        val list = listOf(
+            binding.btnAmericano,
+            binding.btnCappuccino,
+            binding.btnMacchiato,
+            binding.btnLatte
+        )
         list.forEach {
             it.setOnClickListener {
                 binding.clCoffeeSizePart.visibility = View.VISIBLE
             }
         }
     }
-
 }

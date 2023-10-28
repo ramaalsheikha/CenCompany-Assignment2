@@ -1,4 +1,4 @@
-package com.example.myapplication.ui.activity
+package com.example.myapplication.ui.fragments
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -8,8 +8,8 @@ import androidx.navigation.fragment.findNavController
 import com.example.myapplication.R
 import com.example.myapplication.databinding.FragmentHomeBinding
 
-class HomeFragment: Fragment() {
-private lateinit var binding:FragmentHomeBinding
+class HomeFragment : Fragment() {
+    private lateinit var binding: FragmentHomeBinding
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -28,6 +28,5 @@ private lateinit var binding:FragmentHomeBinding
             findNavController().navigate(R.id.orderBuildingFragment)
 
         }
-
     }
 }
