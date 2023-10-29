@@ -1,270 +1,290 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
-    android:background="@color/LightBrown">
+    android:background="@color/LightBrown"
+    android:orientation="vertical">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:background="@color/LightBrown">
+        android:background="@color/LightBrown"
+        android:orientation="vertical">
 
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar_pay"
-        android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        app:title="Pay"
-        android:background="@color/MediumBrown"
-        app:titleTextColor="@color/white"/>
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar_pay"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/MediumBrown"
+            app:title="Pay"
+            app:titleTextColor="@color/white" />
 
-        <TextView
-            android:id="@+id/tv_select"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/tv_select"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:layout_marginBottom="20dp"
+                android:text="@string/select_a_coffee"
+                android:textColor="@color/DarkBrown"
+                android:textSize="25sp"
+                android:textStyle="bold|italic"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <RadioGroup
+                android:id="@+id/rg_one"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:orientation="vertical"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_select">
+
+                <RadioButton
+                    android:id="@+id/rb_americano"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="20dp"
+                    android:background="@drawable/radio_coffee_typs_selector"
+                    android:button="@color/DarkBrown"
+                    android:gravity="center"
+                    android:padding="10dp"
+                    android:text="@string/americano"
+                    android:textColor="@drawable/text_color"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <RadioButton
+                    android:id="@+id/rb_cappuccino"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="20dp"
+                    android:background="@drawable/radio_coffee_typs_selector"
+                    android:button="@color/DarkBrown"
+                    android:gravity="center"
+                    android:padding="10dp"
+                    android:text="@string/cappuccino"
+                    android:textColor="@drawable/text_color"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <RadioButton
+                    android:id="@+id/rb_latte"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="20dp"
+                    android:background="@drawable/radio_coffee_typs_selector"
+                    android:button="@color/DarkBrown"
+                    android:gravity="center"
+                    android:paddingStart="40dp"
+                    android:paddingTop="10dp"
+                    android:paddingEnd="40dp"
+                    android:paddingBottom="10dp"
+                    android:text="@string/latte"
+                    android:textColor="@drawable/text_color"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <RadioButton
+                    android:id="@+id/rb_macchiato"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="20dp"
+                    android:background="@drawable/radio_coffee_typs_selector"
+                    android:button="@color/DarkBrown"
+                    android:gravity="center"
+                    android:paddingStart="16dp"
+                    android:paddingTop="10dp"
+                    android:paddingEnd="16dp"
+                    android:paddingBottom="10dp"
+                    android:text="@string/macchiato"
+                    android:textColor="@drawable/text_color"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+            </RadioGroup>
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/cl_coffee_size_part"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:text="Select a Coffee"
+            android:layout_marginBottom="30dp"
+            android:visibility="gone">
+
+            <TextView
+                android:id="@+id/tv_size"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="30dp"
+                android:text="@string/select_a_size"
+                android:textColor="@color/DarkBrown"
+                android:textSize="25sp"
+                android:textStyle="bold|italic"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <RadioGroup
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:gravity="center"
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_size">
+
+                <RadioButton
+                    android:id="@+id/rb_small"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/small"
+                    android:textColor="@color/DarkBrown"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+
+                <RadioButton
+                    android:id="@+id/rb_medium"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/medium"
+                    android:textColor="@color/DarkBrown"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+
+                <RadioButton
+                    android:id="@+id/rb_larg"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/large"
+                    android:textColor="@color/DarkBrown"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+
+
+            </RadioGroup>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/check_box"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone">
+
+            <TextView
+                android:id="@+id/tv_option"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:layout_marginBottom="30dp"
+                android:text="@string/options"
+                android:textColor="@color/DarkBrown"
+                android:textSize="25sp"
+                android:textStyle="bold|italic"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <LinearLayout
+                android:id="@+id/ln_option"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:orientation="vertical"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_option">
+
+                <CheckBox
+                    android:id="@+id/cb_2shots"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:text="@string/_2_shots"
+                    android:textColor="@color/DarkBrown"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+                <CheckBox
+                    android:id="@+id/cb_sugar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:text="@string/sugar"
+                    android:textColor="@color/DarkBrown"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+                <CheckBox
+                    android:id="@+id/cb_cream"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:text="@string/cream"
+                    android:textColor="@color/DarkBrown"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+                <CheckBox
+                    android:id="@+id/cb_whole_milk"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:text="@string/whole_milk"
+                    android:textColor="@color/DarkBrown"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+                <CheckBox
+                    android:id="@+id/cb_2milk"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:text="@string/_2_milk"
+                    android:textColor="@color/DarkBrown"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+                <CheckBox
+                    android:id="@+id/cb_almond_milk"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:text="@string/almod_milk"
+                    android:textColor="@color/DarkBrown"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <Button
+            android:id="@+id/btn_continue"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:background="@drawable/coffee_types_background"
+            android:text="CONTINUE"
+            android:textColor="@color/white"
             android:textSize="25sp"
-            android:layout_margin="10dp"
-            android:textStyle="bold|italic"
-            android:textColor="@color/DarkBrown"
-            android:layout_marginBottom="20dp" />
-
-        <Button
-            android:id="@+id/btn_americano"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_select"
-            app:layout_constraintEnd_toStartOf="@id/btn_cappuccino"
-            android:text="Americano"
-            android:gravity="center"
-            android:textAllCaps="false"
-            android:textSize="15sp"
-            android:textStyle="bold"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"
-            android:textColor="@drawable/text_color_coffee_type"
-            android:background="@drawable/coffee_types_background"
-            android:padding="10dp"/>
-        <Button
-            android:id="@+id/btn_cappuccino"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintStart_toEndOf="@id/btn_americano"
-            app:layout_constraintTop_toBottomOf="@id/tv_select"
             app:layout_constraintEnd_toEndOf="parent"
-            android:text="Cappuccino"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"
-            android:gravity="center"
-            android:textAllCaps="false"
-            android:textSize="15sp"
-            android:textStyle="bold"
-            android:textColor="@drawable/text_color_coffee_type"
-            android:background="@drawable/coffee_types_background"
-            android:padding="10dp"/>
-        <Button
-            android:id="@+id/btn_latte"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/btn_americano"
-            app:layout_constraintEnd_toStartOf="@id/btn_macchiato"
-            android:text="Latte"
-            android:gravity="center"
-            android:textAllCaps="false"
-            android:textSize="15sp"
-            android:textStyle="bold"
-            android:layout_marginTop="10dp"
-            android:textColor="@drawable/text_color_coffee_type"
-            android:background="@drawable/coffee_types_background"
-            android:paddingStart="32dp"
-            android:paddingEnd="32dp"
-            android:layout_marginBottom="30dp"/>
-        <Button
-            android:id="@+id/btn_macchiato"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintStart_toEndOf="@id/btn_latte"
-            app:layout_constraintTop_toBottomOf="@id/btn_cappuccino"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:text="Macchiato"
-            android:layout_marginTop="10dp"
-            android:textAllCaps="false"
-            android:textSize="15sp"
-            android:gravity="center"
-            android:textStyle="bold"
-            android:textColor="@drawable/text_color_coffee_type"
-            android:background="@drawable/coffee_types_background"
-            android:paddingStart="15dp"
-            android:paddingEnd="15dp"
-            android:layout_marginBottom="30dp"/>
-
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/cl_coffee_size_part"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="30dp"
-        android:visibility="gone">
-        <TextView
-            android:id="@+id/tv_size"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:text="Select a Size"
-            android:textColor="@color/DarkBrown"
-            android:textStyle="bold|italic"
-            android:textSize="25sp"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="30dp"/>
-        <RadioGroup
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@id/tv_size"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginTop="20dp"
-            android:orientation="horizontal"
-            android:gravity="center">
-            <RadioButton
-                android:id="@+id/rb_small"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:text="Small"
-                android:textSize="15sp"
-                android:textStyle="bold"
-                android:textColor="@color/DarkBrown"
-                android:layout_weight="1"/>
-            <RadioButton
-                android:id="@+id/rb_medium"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:text="Medium"
-                android:textSize="15sp"
-                android:textStyle="bold"
-                android:textColor="@color/DarkBrown"
-                android:layout_weight="1"/>
-            <RadioButton
-                android:id="@+id/rb_larg"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:text="Large"
-                android:textSize="15sp"
-                android:textStyle="bold"
-                android:textColor="@color/DarkBrown"
-                android:layout_weight="1"/>
-
-
-        </RadioGroup>
-    </androidx.constraintlayout.widget.ConstraintLayout>
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/check_box"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:visibility="gone">
-    <TextView
-    android:id="@+id/tv_option"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toTopOf="parent"
-    android:text="Options"
-    android:textSize="25sp"
-    android:textStyle="bold|italic"
-    android:textColor="@color/DarkBrown"
-    android:layout_margin="10dp"
-    android:layout_marginBottom="30dp"/>
-        <LinearLayout
-            android:id="@+id/ln_option"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:layout_constraintTop_toBottomOf="@id/tv_option"
-            app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginTop="30dp">
-            <CheckBox android:id="@+id/cb_2shots"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="2 Shots"
-                android:textColor="@color/DarkBrown"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                android:layout_marginStart="10dp"/>
-            <CheckBox android:id="@+id/cb_sugar"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Sugar"
-                android:textColor="@color/DarkBrown"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                android:layout_marginStart="10dp"/>
-            <CheckBox android:id="@+id/cb_cream"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Cream"
-                android:textColor="@color/DarkBrown"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                android:layout_marginStart="10dp"/>
-            <CheckBox android:id="@+id/cb_whole_milk"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Whole Milk"
-                android:textColor="@color/DarkBrown"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                android:layout_marginStart="10dp"/>
-            <CheckBox android:id="@+id/cb_2milk"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="2%Milk"
-                android:textColor="@color/DarkBrown"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                android:layout_marginStart="10dp"/>
-            <CheckBox android:id="@+id/cb_non_fat_milk"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Sugar"
-                android:textColor="@color/DarkBrown"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                android:layout_marginStart="10dp"/>
-            <CheckBox android:id="@+id/cb_almond_milk"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Almod Milk"
-                android:textColor="@color/DarkBrown"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                android:layout_marginStart="10dp"/>
-
-        </LinearLayout>
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <Button
-        android:id="@+id/btn_continue"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/btn_latte"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:text="CONTINUE"
-        android:textSize="25sp"
-        android:layout_margin="20dp"
-        android:textColor="@color/white"
-        android:background="@drawable/coffee_types_background"/>
+            app:layout_constraintTop_toBottomOf="@id/rb_latte" />
     </LinearLayout>
 
 </ScrollView>

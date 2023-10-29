@@ -43,10 +43,10 @@ class OrderBuildingFragment : Fragment() {
 
     private fun showCoffeeSize() {
         val list = listOf(
-            binding.btnAmericano,
-            binding.btnCappuccino,
-            binding.btnMacchiato,
-            binding.btnLatte
+            binding.rbAmericano,
+            binding.rbCappuccino,
+            binding.rbLatte,
+            binding.rbMacchiato
         )
         list.forEach {
             it.setOnClickListener {

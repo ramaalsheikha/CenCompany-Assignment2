@@ -34,7 +34,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="20dp"
-                android:text="Full Name"
+                android:text="@string/full_name"
                 android:textColor="@color/DarkBrown"
                 android:textSize="20sp"
                 android:textStyle="bold"
@@ -47,7 +47,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="20dp"
                 android:layout_marginTop="20dp"
-                android:hint="John Doe"
+                android:hint="@string/john_doe"
                 android:inputType="textPersonName"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tv_full_name" />
@@ -57,7 +57,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="20dp"
-                android:text="Phone Number"
+                android:text="@string/phone_number"
                 android:textColor="@color/DarkBrown"
                 android:textSize="20sp"
                 android:textStyle="bold"
@@ -70,23 +70,25 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="20dp"
                 android:layout_marginTop="20dp"
-                android:hint="444-444-444"
+                android:hint="@string/_444_444_444"
                 android:inputType="phone"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tv_phone_number" />
+
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btn_continou"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="continuo"
-                android:background="@drawable/coffee_types_background"
-                android:layout_marginTop="20dp"
                 android:layout_marginHorizontal="40dp"
-                android:visibility="visible"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/coffee_types_background"
                 android:clickable="true"
-                app:layout_constraintTop_toBottomOf="@id/et_phone_number"
+                android:focusable="true"
+                android:text="continue"
+                android:visibility="visible"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"/>
+                app:layout_constraintTop_toBottomOf="@id/et_phone_number" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -101,7 +103,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="20dp"
-                android:text="Pickup Time"
+                android:text="@string/pickup_time"
                 android:textColor="@color/DarkBrown"
                 android:textSize="20sp"
                 android:textStyle="bold"
@@ -132,7 +134,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
                 android:layout_marginBottom="20dp"
-                android:text="Enter Payment Info"
+                android:text="@string/enter_payment_info"
                 android:textColor="@color/DarkBrown"
                 android:textSize="25sp"
                 android:textStyle="bold|italic"
@@ -144,9 +146,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="15dp"
-                android:text="Card Type"
+                android:text="@string/card_type"
                 android:textColor="@color/DarkBrown"
-                android:textSize="20dp"
+                android:textSize="20sp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tv_enterPayment" />
@@ -173,9 +175,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="20dp"
-                android:text="Card Number"
+                android:text="@string/card_number"
                 android:textColor="@color/DarkBrown"
-                android:textSize="20dp"
+                android:textSize="20sp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -185,7 +187,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="20dp"
-                android:hint="1234123412341234"
+                android:hint="@string/_1234123412341234"
                 android:inputType="phone"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tv_card_number" />
@@ -195,9 +197,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="20dp"
-                android:text="Card Expiry"
+                android:text="@string/card_expiry"
                 android:textColor="@color/DarkBrown"
-                android:textSize="20dp"
+                android:textSize="20sp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/et_card_number" />
@@ -208,7 +210,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="20dp"
-                android:hint="MM"
+                android:hint="@string/mm"
                 android:inputType="number"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tv_card_expiry" />
@@ -218,7 +220,7 @@
                 android:layout_width="80dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:hint="YYY"
+                android:hint="@string/yyy"
                 android:inputType="number"
                 app:layout_constraintStart_toEndOf="@id/slach"
                 app:layout_constraintTop_toBottomOf="@id/tv_card_expiry" />
@@ -228,7 +230,7 @@
                 android:layout_width="10dp"
                 android:layout_height="40dp"
                 android:layout_marginTop="30dp"
-                android:text="/"
+                android:text="@string/slach"
                 app:layout_constraintStart_toEndOf="@id/et_card_month"
                 app:layout_constraintTop_toBottomOf="@id/tv_card_expiry" />
 
@@ -237,7 +239,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="20dp"
-                android:hint="***"
+                android:hint="@string/stars"
                 android:inputType="number"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/et_card_year" />
@@ -249,7 +251,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="20dp"
             android:background="@drawable/coffee_types_background"
-            android:text="PLACE ORDER"
+            android:text="@string/place_order"
             android:textColor="@color/white"
             android:textSize="25sp"
             android:visibility="gone"
