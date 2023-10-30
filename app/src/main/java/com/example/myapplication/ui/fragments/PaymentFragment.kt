@@ -6,8 +6,10 @@ import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import com.example.myapplication.R
 import com.example.myapplication.databinding.FragmentPaymentBinding
+import com.example.myapplication.domine.OrderInfo
 
 class PaymentFragment:Fragment() {
     private lateinit var binding:FragmentPaymentBinding
@@ -29,6 +31,13 @@ if (isValidate()) {
     binding.clSpinner.visibility = View.VISIBLE
     binding.clPickerTime.visibility = View.VISIBLE
     binding.btnContinou.visibility = View.GONE
+
+    val orderInfo = arguments?.getParcelable<OrderInfo>("orderInfo")
+    val bundle = Bundle().apply {
+        putParcelable("orderInfo", orderInfo)
+    }
+        findNavController().navigate(R.id.orderSummaryFragment,bundle)
+
           }
        }
     }
