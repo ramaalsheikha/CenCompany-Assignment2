@@ -22,25 +22,32 @@ class PaymentFragment:Fragment() {
         return binding.root
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        showSpinnerAndPickupTime()
+        showCard()
         initListener()
-        showSpinner()
     }
+
     private fun initListener() {
+            binding.btnPlaceOrder.setOnClickListener {
+                val orderInfo = arguments?.getParcelable<OrderInfo>("orderInfo")
+                val bundle = Bundle().apply {
+                    putParcelable("orderInfo", orderInfo)
+                }
+                findNavController().navigate(R.id.orderSummaryFragment,bundle)
+        }
+    }
+
+    private fun showSpinnerAndPickupTime() {
         binding.btnContinou.setOnClickListener {
 if (isValidate()) {
     binding.clSpinner.visibility = View.VISIBLE
     binding.clPickerTime.visibility = View.VISIBLE
     binding.btnContinou.visibility = View.GONE
+}
 
-    val orderInfo = arguments?.getParcelable<OrderInfo>("orderInfo")
-    val bundle = Bundle().apply {
-        putParcelable("orderInfo", orderInfo)
     }
-        findNavController().navigate(R.id.orderSummaryFragment,bundle)
-
-          }
        }
-    }
+
     private fun isValidate(): Boolean {
         var isVal =false
         if (binding.etFullName.length() <= 0){
@@ -57,7 +64,7 @@ if (isValidate()) {
        }
         return isVal
     }
-    private fun showSpinner() {
+    private fun showCard() {
         ArrayAdapter.createFromResource(
             binding.spCardType.context,
             R.array.cardType,
@@ -80,6 +87,7 @@ if (isValidate()) {
                     binding.clCard.visibility = View.GONE
                 } else {
                     binding.clCard.visibility = View.VISIBLE
+                    binding.btnPlaceOrder.visibility = View.VISIBLE
                 }
             }
             override fun onNothingSelected(parent: AdapterView<*>?) {
