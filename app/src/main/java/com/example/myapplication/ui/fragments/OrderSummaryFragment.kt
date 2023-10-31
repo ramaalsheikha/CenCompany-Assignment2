@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.myapplication.databinding.FragmentOrderSummaryBinding
 import com.example.myapplication.domine.OrderInfo
+import com.example.myapplication.domine.UserInfo
 import java.lang.StringBuilder
 
 class OrderSummaryFragment : Fragment() {
@@ -19,8 +20,11 @@ class OrderSummaryFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-      // showOrderInfo()
-        val orderInfo: OrderInfo? = arguments?.getParcelable<OrderInfo>("orderInfo")
+        // showOrderInfo()
+        val userInfo = arguments?.getParcelable<UserInfo>("userInfo")
+        binding.tvFullNameInput.text = userInfo?.userName
+        binding.tvPhoneNumberInput.text = userInfo?.userPhone
+        val orderInfo = arguments?.getParcelable<OrderInfo>("orderInfo")
         binding.tvOrderInput.text = "A ${orderInfo?.coffeeSize} ${orderInfo?.coffeeType} ,with "
     }
 

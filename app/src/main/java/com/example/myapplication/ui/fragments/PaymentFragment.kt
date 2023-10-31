@@ -10,9 +10,12 @@ import androidx.navigation.fragment.findNavController
 import com.example.myapplication.R
 import com.example.myapplication.databinding.FragmentPaymentBinding
 import com.example.myapplication.domine.OrderInfo
+import com.example.myapplication.domine.UserInfo
 
 class PaymentFragment:Fragment() {
     private lateinit var binding:FragmentPaymentBinding
+    private lateinit var userName:String
+    private lateinit var userPhone:String
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -30,8 +33,10 @@ class PaymentFragment:Fragment() {
     private fun initListener() {
             binding.btnPlaceOrder.setOnClickListener {
                 val orderInfo = arguments?.getParcelable<OrderInfo>("orderInfo")
+                val userInfo = UserInfo(binding.etFullName.text.toString(),binding.etPhoneNumber.text.toString())
                 val bundle = Bundle().apply {
                     putParcelable("orderInfo", orderInfo)
+                    putParcelable("userInfo",userInfo)
                 }
                 findNavController().navigate(R.id.orderSummaryFragment,bundle)
         }
