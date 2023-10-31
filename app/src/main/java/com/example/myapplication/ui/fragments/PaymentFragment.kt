@@ -43,6 +43,7 @@ if (isValidate()) {
     binding.clSpinner.visibility = View.VISIBLE
     binding.clPickerTime.visibility = View.VISIBLE
     binding.btnContinou.visibility = View.GONE
+
 }
 
     }

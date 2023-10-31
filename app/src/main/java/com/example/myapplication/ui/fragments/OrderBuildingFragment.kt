@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
@@ -12,7 +13,7 @@ import com.example.myapplication.databinding.FragmentOrderBuildingBinding
 import com.example.myapplication.domine.OrderInfo
 
 class OrderBuildingFragment : Fragment() {
-    private var selectedCoffeeType: String = ""
+    private  var selectedCoffeeType: String = ""
     private var selectedCoffeeSize: String = ""
     private var checkBoxList = mutableListOf<String>()
     private lateinit var binding: FragmentOrderBuildingBinding
@@ -42,20 +43,33 @@ class OrderBuildingFragment : Fragment() {
             binding.cbWholeMilk
         )
         list.forEach {
-            if (it.isChecked()) {
+            if (it.isChecked) {
                 checkBoxList.add(it.text.toString())
+            } else {
+
             }
 
         }
     }
 
     private fun initListener() {
+
         binding.btnContinue.setOnClickListener {
-            val orderInfo = OrderInfo(selectedCoffeeType,selectedCoffeeSize,checkBoxList)
-            val bundle = bundleOf().apply {
-                putParcelable("orderInfo",orderInfo)
+            if (selectedCoffeeType.isEmpty()||selectedCoffeeSize.isEmpty()) {
+                Toast.makeText(
+                    context,
+                    "The type or size of coffee  is unknown",
+                    Toast.LENGTH_SHORT
+                ).show()
+            } else {
+                val orderInfo = OrderInfo(selectedCoffeeType, selectedCoffeeSize, checkBoxList)
+                val bundle = bundleOf().apply {
+                    putParcelable("orderInfo", orderInfo)
+                }
+                findNavController().navigate(R.id.paymentFragment, bundle)
+
             }
-            findNavController().navigate(R.id.paymentFragment,bundle)
+
         }
     }
 
