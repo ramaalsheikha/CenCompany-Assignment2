@@ -7,4 +7,5 @@ import kotlinx.parcelize.Parcelize
 class UserInfo (
     var userName:String,
     var userPhone:String,
+
 ):Parcelable

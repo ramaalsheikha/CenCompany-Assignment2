@@ -1,21 +1,23 @@
 package com.example.myapplication.ui.fragments
+
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
+import androidx.core.view.get
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.myapplication.R
 import com.example.myapplication.databinding.FragmentPaymentBinding
 import com.example.myapplication.domine.OrderInfo
 import com.example.myapplication.domine.UserInfo
+import java.util.Calendar
 
-class PaymentFragment:Fragment() {
-    private lateinit var binding:FragmentPaymentBinding
-    private lateinit var userName:String
-    private lateinit var userPhone:String
+class PaymentFragment : Fragment() {
+    private lateinit var binding: FragmentPaymentBinding
+    private lateinit var selectedTime: String
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -24,6 +26,7 @@ class PaymentFragment:Fragment() {
         binding = FragmentPaymentBinding.inflate(layoutInflater)
         return binding.root
     }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         showSpinnerAndPickupTime()
         showCard()
@@ -31,45 +34,58 @@ class PaymentFragment:Fragment() {
     }
 
     private fun initListener() {
-            binding.btnPlaceOrder.setOnClickListener {
-                val orderInfo = arguments?.getParcelable<OrderInfo>("orderInfo")
-                val userInfo = UserInfo(binding.etFullName.text.toString(),binding.etPhoneNumber.text.toString())
-                val bundle = Bundle().apply {
-                    putParcelable("orderInfo", orderInfo)
-                    putParcelable("userInfo",userInfo)
-                }
-                findNavController().navigate(R.id.orderSummaryFragment,bundle)
+        binding.btnPlaceOrder.setOnClickListener {
+            //showPickerTime()
+
+            val orderInfo = arguments?.getParcelable<OrderInfo>("orderInfo")
+            val userInfo = UserInfo(
+                binding.etFullName.text.toString(),
+                binding.etPhoneNumber.text.toString(),
+            )
+            val bundle = Bundle().apply {
+                putParcelable("orderInfo", orderInfo)
+                putParcelable("userInfo", userInfo)
+            }
+            findNavController().navigate(R.id.orderSummaryFragment, bundle)
         }
+    }
+
+    private fun showPickerTime() {
+        binding.clPickerTime.visibility = View.VISIBLE
+        binding.npMinutes.minValue = 0
+        binding.npMinutes.maxValue = 59
     }
 
     private fun showSpinnerAndPickupTime() {
         binding.btnContinou.setOnClickListener {
-if (isValidate()) {
-    binding.clSpinner.visibility = View.VISIBLE
-    binding.clPickerTime.visibility = View.VISIBLE
-    binding.btnContinou.visibility = View.GONE
+            if (isValidate()) {
+                binding.clSpinner.visibility = View.VISIBLE
+                showPickerTime()
+               // binding.clPickerTime.visibility = View.VISIBLE
+                binding.btnContinou.visibility = View.GONE
 
-}
+            }
 
+        }
     }
-       }
 
     private fun isValidate(): Boolean {
-        var isVal =false
-        if (binding.etFullName.length() <= 0){
+        var isVal = false
+        if (binding.etFullName.length() <= 0) {
             binding.etFullName.error = "please enter your name"
-            isVal =false
-        }else{
-            isVal =true
+            isVal = false
+        } else {
+            isVal = true
         }
-       if (binding.etPhoneNumber.length() != 10 ) {
-           binding.etPhoneNumber.error = "failed phone number"
-           isVal =false
-       }else{
-           isVal =true
-       }
+        if (binding.etPhoneNumber.length() != 10) {
+            binding.etPhoneNumber.error = "failed phone number"
+            isVal = false
+        } else {
+            isVal = true
+        }
         return isVal
     }
+
     private fun showCard() {
         ArrayAdapter.createFromResource(
             binding.spCardType.context,
@@ -77,9 +93,9 @@ if (isValidate()) {
             android.R.layout.simple_spinner_item
         ).also { adapter ->
             adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-           binding.spCardType.adapter = adapter
+            binding.spCardType.adapter = adapter
         }
-        binding.spCardType.onItemSelectedListener = object :AdapterView.OnItemSelectedListener,
+        binding.spCardType.onItemSelectedListener = object : AdapterView.OnItemSelectedListener,
             AdapterView.OnItemClickListener {
             override fun onItemSelected(
                 parent: AdapterView<*>?,
@@ -96,8 +112,9 @@ if (isValidate()) {
                     binding.btnPlaceOrder.visibility = View.VISIBLE
                 }
             }
+
             override fun onNothingSelected(parent: AdapterView<*>?) {
-                binding.clCard.visibility= View.GONE
+                binding.clCard.visibility = View.GONE
             }
 
             override fun onItemClick(
