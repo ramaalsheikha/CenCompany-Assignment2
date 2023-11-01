@@ -52,8 +52,15 @@ class PaymentFragment : Fragment() {
 
     private fun showPickerTime() {
         binding.clPickerTime.visibility = View.VISIBLE
+
+        binding.npHour.minValue = 1
+        binding.npHour.maxValue = 24
+
         binding.npMinutes.minValue = 0
         binding.npMinutes.maxValue = 59
+
+        val str = arrayOf("AM","PM")
+        binding.npAmPm.displayedValues = str
     }
 
     private fun showSpinnerAndPickupTime() {
