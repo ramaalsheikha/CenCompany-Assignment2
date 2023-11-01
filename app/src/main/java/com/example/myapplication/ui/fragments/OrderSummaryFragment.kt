@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.myapplication.databinding.FragmentOrderSummaryBinding
 import com.example.myapplication.domine.OrderInfo
+import com.example.myapplication.domine.PickerTime
 import com.example.myapplication.domine.UserInfo
 import java.lang.StringBuilder
 
@@ -24,6 +25,8 @@ class OrderSummaryFragment : Fragment() {
         val userInfo = arguments?.getParcelable<UserInfo>("userInfo")
         binding.tvFullNameInput.text = userInfo?.userName
         binding.tvPhoneNumberInput.text = userInfo?.userPhone
+        val pickerTime = arguments?.getParcelable<PickerTime>("pickerTime")
+        binding.tvPickupTimeInput.text = "${pickerTime?.hour} : ${pickerTime?.minutes} ${pickerTime?.amPm}"
         val orderInfo = arguments?.getParcelable<OrderInfo>("orderInfo")
         binding.tvOrderInput.text = "A ${orderInfo?.coffeeSize} ${orderInfo?.coffeeType} ,with "
     }
