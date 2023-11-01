@@ -17,6 +17,9 @@ import java.util.Calendar
 
 class PaymentFragment : Fragment() {
     private lateinit var binding: FragmentPaymentBinding
+    private var hour:Int = 1
+    private var minutes = 0
+    private var amPm = ""
     private lateinit var selectedTime: String
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -60,7 +63,21 @@ class PaymentFragment : Fragment() {
         binding.npMinutes.maxValue = 59
 
         val str = arrayOf("AM","PM")
+        binding.npAmPm.minValue = 0
+        binding.npAmPm.maxValue = str.size
         binding.npAmPm.displayedValues = str
+
+        binding.npHour.setOnValueChangedListener { picker, oldVal, newVal ->
+            hour = picker.value
+        }
+        binding.npMinutes.setOnValueChangedListener { picker, oldVal, newVal ->
+            minutes = picker.value
+        }
+        binding.npAmPm.setOnValueChangedListener { picker, oldVal, newVal ->
+            val i = picker.value
+            amPm = str[i]
+        }
+
     }
 
     private fun showSpinnerAndPickupTime() {
