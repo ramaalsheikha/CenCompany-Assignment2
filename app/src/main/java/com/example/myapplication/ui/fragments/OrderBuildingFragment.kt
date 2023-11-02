@@ -54,23 +54,46 @@ class OrderBuildingFragment : Fragment() {
     private fun initListener() {
 
         binding.btnContinue.setOnClickListener {
-            selectedCheckBox()
-            if (selectedCoffeeType == "" ||selectedCoffeeType.length<2) {
-                Toast.makeText(
-                    context,
-                    "The type or size of coffee  is unknown",
-                    Toast.LENGTH_SHORT
-                ).show()
-            } else {
+                selectedCheckBox()
                 val orderInfo = OrderInfo(selectedCoffeeType, selectedCoffeeSize, checkBoxList)
                 val bundle = bundleOf().apply {
                     putParcelable("orderInfo", orderInfo)
                 }
                 findNavController().navigate(R.id.paymentFragment, bundle)
+        }
+    }
+
+    private fun isValidate():Boolean {
+        var isVal = true
+        val list = listOf(
+            binding.rbAmericano,
+            binding.rbCappuccino,
+            binding.rbLatte,
+            binding.rbMacchiato
+        )
+        list.forEach {
+            if (!it.isChecked) {
+                binding.tvSelect.error = "Please Select Coffee Type"
+                isVal = false
+            } else {
+                binding.tvSelect.error = null
+                selectedCoffeeType = it.text.toString()
 
             }
-
         }
+        val listTwo = listOf(binding.rbSmall, binding.rbMedium, binding.rbLarg)
+        listTwo.forEach {
+            if (!it.isChecked){
+                binding.tvSize.error = "Please Select Coffee Size"
+                isVal = false
+            }
+            else{
+                binding.tvSize.error = null
+                selectedCoffeeSize = it.text.toString()
+            }
+        }
+
+        return isVal
     }
 
     private fun showCheckBoxOptions() {
@@ -80,10 +103,8 @@ class OrderBuildingFragment : Fragment() {
                 binding.checkBox.visibility = View.VISIBLE
             }
             selectedCoffeeSize = it.text.toString()
-
         }
     }
-
     private fun showCoffeeSize() {
         val list = listOf(
             binding.rbAmericano,

@@ -81,10 +81,13 @@ class PaymentFragment : Fragment() {
         else{
             binding.etCardDate.error = null
         }
-
-
-
-
+        if (binding.etCardCvv.length()!=3){
+            binding.etCardCvv.error = "Please enter a valid card CVV"
+            isVal = false
+        }
+        else{
+            binding.etCardCvv.error = null
+        }
         return isVal
     }
 

@@ -113,6 +113,20 @@
                     android:textSize="18sp"
                     android:textStyle="bold" />
             </RadioGroup>
+            <Button
+                android:id="@+id/btn_continue_one"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"
+                android:background="@drawable/coffee_types_background"
+                android:text="CONTINUE"
+                android:visibility="visible"
+                android:textColor="@color/white"
+                android:textSize="25sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/rg_one" />
+
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -280,6 +294,7 @@
             android:layout_margin="20dp"
             android:background="@drawable/coffee_types_background"
             android:text="CONTINUE"
+            android:visibility="gone"
             android:textColor="@color/white"
             android:textSize="25sp"
             app:layout_constraintEnd_toEndOf="parent"
