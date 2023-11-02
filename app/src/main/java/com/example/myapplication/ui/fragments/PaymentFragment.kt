@@ -13,6 +13,7 @@ import com.example.myapplication.databinding.FragmentPaymentBinding
 import com.example.myapplication.domine.OrderInfo
 import com.example.myapplication.domine.PickerTime
 import com.example.myapplication.domine.UserInfo
+import java.util.regex.Pattern
 
 class PaymentFragment : Fragment() {
     private lateinit var binding: FragmentPaymentBinding
@@ -57,17 +58,34 @@ class PaymentFragment : Fragment() {
     }
 
     private fun isValidateCard(): Boolean {
-        var isVal = false
-        if (binding.etCardNumber.length() !=16) {
+        /**
+         * Prepare regex for date
+         */
+        val date = binding.etCardDate.text
+        val regex = "^(3[01]|[12][0-9]|0[1-9])/[0-9]{4}$".toRegex()
+        val pattern: Pattern = Pattern.compile(regex.toString())
+        val matcher = pattern.matcher(date)
+        val isCorrectDate :Boolean = matcher.matches()
+
+        var isVal = true
+        if (binding.etCardNumber.length() != 16) {
             binding.etCardNumber.error = "Please enter a valid card number"
             isVal = false
-        } else if (binding.etCardNumber.length()==16) {
-            isVal = true
+        } else  {
+            binding.etCardNumber.error = null
+        }
+        if (!isCorrectDate){
+            binding.etCardDate.error = "Please enter a valid card date"
+            isVal=false
+        }
+        else{
+            binding.etCardDate.error = null
         }
 
 
 
-return isVal
+
+        return isVal
     }
 
     private fun showPickerTime() {

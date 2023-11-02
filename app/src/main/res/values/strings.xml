@@ -36,6 +36,7 @@
     <string name="place_order">PLACE ORDER</string>
     <string name="latte">Latte</string>
     <string name="macchiato">Macchiato</string>
+    <string name="mm_yyyy">MM/YYYY</string>
     <string-array name="cardType" >
         <item></item>
         <item>Visa</item>

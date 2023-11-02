@@ -219,7 +219,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="20dp"
                 android:hint="@string/_1234123412341234"
-                android:inputType="phone"
+                android:inputType="number"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tv_card_number" />
 
@@ -236,34 +236,34 @@
                 app:layout_constraintTop_toBottomOf="@id/et_card_number" />
 
             <EditText
-                android:id="@+id/et_card_month"
-                android:layout_width="80dp"
+                android:id="@+id/et_card_date"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="20dp"
-                android:hint="@string/mm"
-                android:inputType="number"
+                android:hint="@string/mm_yyyy"
+                android:inputType="date"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tv_card_expiry" />
 
-            <EditText
-                android:id="@+id/et_card_year"
-                android:layout_width="80dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:hint="@string/yyy"
-                android:inputType="number"
-                app:layout_constraintStart_toEndOf="@id/slach"
-                app:layout_constraintTop_toBottomOf="@id/tv_card_expiry" />
+<!--            <EditText-->
+<!--                android:id="@+id/et_card_year"-->
+<!--                android:layout_width="80dp"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginTop="20dp"-->
+<!--                android:hint="@string/yyy"-->
+<!--                android:inputType="number"-->
+<!--                app:layout_constraintStart_toEndOf="@id/slach"-->
+<!--                app:layout_constraintTop_toBottomOf="@id/tv_card_expiry" />-->
 
-            <TextView
-                android:id="@+id/slach"
-                android:layout_width="10dp"
-                android:layout_height="40dp"
-                android:layout_marginTop="30dp"
-                android:text="@string/slach"
-                app:layout_constraintStart_toEndOf="@id/et_card_month"
-                app:layout_constraintTop_toBottomOf="@id/tv_card_expiry" />
+<!--            <TextView-->
+<!--                android:id="@+id/slach"-->
+<!--                android:layout_width="10dp"-->
+<!--                android:layout_height="40dp"-->
+<!--                android:layout_marginTop="30dp"-->
+<!--                android:text="@string/slach"-->
+<!--                app:layout_constraintStart_toEndOf="@id/et_card_month"-->
+<!--                app:layout_constraintTop_toBottomOf="@id/tv_card_expiry" />-->
 
             <EditText
                 android:id="@+id/et_card_cvv"
@@ -273,7 +273,7 @@
                 android:hint="@string/stars"
                 android:inputType="number"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/et_card_year" />
+                app:layout_constraintTop_toBottomOf="@id/et_card_date" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <Button
