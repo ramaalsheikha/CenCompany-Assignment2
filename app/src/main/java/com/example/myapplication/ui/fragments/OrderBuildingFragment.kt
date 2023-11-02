@@ -101,6 +101,8 @@ class OrderBuildingFragment : Fragment() {
         list.forEach {
             it.setOnClickListener {
                 binding.checkBox.visibility = View.VISIBLE
+                binding.btnContinueTwo.visibility = View.GONE
+                binding.btnContinue.visibility = View.VISIBLE
             }
             selectedCoffeeSize = it.text.toString()
         }
@@ -115,6 +117,8 @@ class OrderBuildingFragment : Fragment() {
         list.forEach {
             it.setOnClickListener {
                 binding.clCoffeeSizePart.visibility = View.VISIBLE
+                binding.btnContinueOne.visibility = View.GONE
+                binding.btnContinueTwo.visibility = View.VISIBLE
             }
             selectedCoffeeType = it.text.toString()
         }

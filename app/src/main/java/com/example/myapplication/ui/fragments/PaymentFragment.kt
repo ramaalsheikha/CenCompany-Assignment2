@@ -120,7 +120,7 @@ class PaymentFragment : Fragment() {
 
     private fun showSpinnerAndPickupTime() {
         binding.btnContinou.setOnClickListener {
-            if (isValidateSpinner()) {
+            if (isValidateNameAndNumber()) {
                 binding.clSpinner.visibility = View.VISIBLE
                 showPickerTime()
                 binding.btnContinou.visibility = View.GONE
@@ -130,7 +130,7 @@ class PaymentFragment : Fragment() {
         }
     }
 
-    private fun isValidateSpinner(): Boolean {
+    private fun isValidateNameAndNumber(): Boolean {
         var isVal = false
         if (binding.etFullName.length() == 0) {
             binding.etFullName.error = "please enter your name"
