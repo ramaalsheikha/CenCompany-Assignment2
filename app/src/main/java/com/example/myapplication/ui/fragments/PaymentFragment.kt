@@ -27,13 +27,16 @@ class PaymentFragment : Fragment() {
         binding = FragmentPaymentBinding.inflate(layoutInflater)
         return binding.root
     }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         showSpinnerAndPickupTime()
         showCard()
         initListener()
     }
+
     private fun initListener() {
         binding.btnPlaceOrder.setOnClickListener {
+
             val orderInfo = arguments?.getParcelable<OrderInfo>("orderInfo")
             val userInfo = UserInfo(
                 binding.etFullName.text.toString(),
@@ -45,11 +48,28 @@ class PaymentFragment : Fragment() {
             val bundle = Bundle().apply {
                 putParcelable("orderInfo", orderInfo)
                 putParcelable("userInfo", userInfo)
-                putParcelable("pickerTime",pickerTime)
+                putParcelable("pickerTime", pickerTime)
             }
-            findNavController().navigate(R.id.orderSummaryFragment, bundle)
+            if (isValidateCard()) {
+                findNavController().navigate(R.id.orderSummaryFragment, bundle)
+            }
         }
     }
+
+    private fun isValidateCard(): Boolean {
+        var isVal = false
+        if (binding.etCardNumber.length() !=16) {
+            binding.etCardNumber.error = "Please enter a valid card number"
+            isVal = false
+        } else if (binding.etCardNumber.length()==16) {
+            isVal = true
+        }
+
+
+
+return isVal
+    }
+
     private fun showPickerTime() {
         binding.clPickerTime.visibility = View.VISIBLE
 
@@ -59,9 +79,9 @@ class PaymentFragment : Fragment() {
         binding.npMinutes.minValue = 0
         binding.npMinutes.maxValue = 59
 
-        val str = arrayOf("^","AM", "PM")
+        val str = arrayOf("^", "AM", "PM")
         binding.npAmPm.minValue = 0
-        binding.npAmPm.maxValue = (str.size-1)
+        binding.npAmPm.maxValue = (str.size - 1)
         binding.npAmPm.displayedValues = str
 
         binding.npHour.setOnValueChangedListener { picker, oldVal, newVal ->
@@ -79,10 +99,9 @@ class PaymentFragment : Fragment() {
 
     private fun showSpinnerAndPickupTime() {
         binding.btnContinou.setOnClickListener {
-            if (isValidate()) {
+            if (isValidateSpinner()) {
                 binding.clSpinner.visibility = View.VISIBLE
                 showPickerTime()
-                // binding.clPickerTime.visibility = View.VISIBLE
                 binding.btnContinou.visibility = View.GONE
 
             }
@@ -90,9 +109,9 @@ class PaymentFragment : Fragment() {
         }
     }
 
-    private fun isValidate(): Boolean {
+    private fun isValidateSpinner(): Boolean {
         var isVal = false
-        if (binding.etFullName.length() <= 0) {
+        if (binding.etFullName.length() == 0) {
             binding.etFullName.error = "please enter your name"
             isVal = false
         } else {
