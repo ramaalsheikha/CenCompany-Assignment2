@@ -13,8 +13,8 @@ import com.example.myapplication.databinding.FragmentOrderBuildingBinding
 import com.example.myapplication.domine.OrderInfo
 
 class OrderBuildingFragment : Fragment() {
-    private  var selectedCoffeeType: String = ""
-    private var selectedCoffeeSize: String = ""
+    private lateinit var selectedCoffeeType: String
+    private lateinit var selectedCoffeeSize: String
     private var checkBoxList = mutableListOf<String>()
     private lateinit var binding: FragmentOrderBuildingBinding
     override fun onCreateView(
@@ -29,7 +29,6 @@ class OrderBuildingFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         showCoffeeSize()
         showCheckBoxOptions()
-        selectedCheckBox()
         initListener()
     }
 
@@ -55,7 +54,8 @@ class OrderBuildingFragment : Fragment() {
     private fun initListener() {
 
         binding.btnContinue.setOnClickListener {
-            if (selectedCoffeeType.isEmpty()||selectedCoffeeSize.isEmpty()) {
+            selectedCheckBox()
+            if (selectedCoffeeType == "" ||selectedCoffeeType.length<2) {
                 Toast.makeText(
                     context,
                     "The type or size of coffee  is unknown",

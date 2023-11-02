@@ -6,7 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
-import androidx.core.view.get
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.myapplication.R
@@ -14,14 +13,12 @@ import com.example.myapplication.databinding.FragmentPaymentBinding
 import com.example.myapplication.domine.OrderInfo
 import com.example.myapplication.domine.PickerTime
 import com.example.myapplication.domine.UserInfo
-import java.util.Calendar
 
 class PaymentFragment : Fragment() {
     private lateinit var binding: FragmentPaymentBinding
     private var hour: Int = 1
     private var minutes = 0
     private var amPm = ""
-    private lateinit var selectedTime: String
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -62,7 +59,7 @@ class PaymentFragment : Fragment() {
         binding.npMinutes.minValue = 0
         binding.npMinutes.maxValue = 59
 
-        val str = arrayOf("AM", "PM")
+        val str = arrayOf("^","AM", "PM")
         binding.npAmPm.minValue = 0
         binding.npAmPm.maxValue = (str.size-1)
         binding.npAmPm.displayedValues = str
