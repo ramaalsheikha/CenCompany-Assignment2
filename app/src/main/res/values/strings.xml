@@ -44,7 +44,18 @@
     <string name="first_element">^</string>
     <string name="am">AM</string>
     <string name="pm">PM</string>
+    <string name="error_valid_name">please enter your name</string>
+    <string name="error_valid_number">failed phone number</string>
+    <string name="orderinfo">orderInfo</string>
+    <string name="userinfo">userInfo</string>
+    <string name="pickertime">pickerTime</string>
+    <string name="cup_a_coffee">Cup_A_Coffee</string>
+    <string name="pay">Pay</string>
+    <string name="summary">Summary</string>
+    <string name="order_summary">Order Summary</string>
+    <string name="order">Order</string>
     <string-array name="cardType" >
+
         <item></item>
         <item>Visa</item>
         <item>Mastercard</item>

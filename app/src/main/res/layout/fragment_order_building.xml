@@ -17,7 +17,7 @@
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="@color/MediumBrown"
-            app:title="Pay"
+            app:title="@string/pay"
             app:titleTextColor="@color/white" />
 
         <androidx.constraintlayout.widget.ConstraintLayout

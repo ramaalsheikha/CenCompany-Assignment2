@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import com.example.myapplication.R
 import com.example.myapplication.databinding.FragmentOrderSummaryBinding
 import com.example.myapplication.domine.OrderInfo
 import com.example.myapplication.domine.PickerTime
@@ -21,17 +22,17 @@ class OrderSummaryFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        val userInfo = arguments?.getParcelable<UserInfo>("userInfo")
+        val userInfo = arguments?.getParcelable<UserInfo>(getString(R.string.userinfo))
         binding.tvFullNameInput.text = userInfo?.userName
         binding.tvPhoneNumberInput.text = userInfo?.userPhone
-        val pickerTime = arguments?.getParcelable<PickerTime>("pickerTime")
+        val pickerTime = arguments?.getParcelable<PickerTime>(getString(R.string.pickertime))
         binding.tvPickupTimeInput.text =
             "${pickerTime?.hour} : ${pickerTime?.minutes} ${pickerTime?.amPm}"
         showOrderInfo()
     }
 
     private fun showOrderInfo() {
-        val orderInfo = arguments?.getParcelable<OrderInfo>("orderInfo")
+        val orderInfo = arguments?.getParcelable<OrderInfo>(getString(R.string.orderinfo))
         val orderText = StringBuilder()
         if (orderInfo != null) {
             if (orderInfo.checkBox.size > 0) {

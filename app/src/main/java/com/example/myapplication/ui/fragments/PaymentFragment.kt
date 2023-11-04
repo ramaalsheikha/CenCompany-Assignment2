@@ -38,7 +38,7 @@ class PaymentFragment : Fragment() {
     private fun initListener() {
         binding.btnPlaceOrder.setOnClickListener {
 
-            val orderInfo = arguments?.getParcelable<OrderInfo>("orderInfo")
+            val orderInfo = arguments?.getParcelable<OrderInfo>(getString(R.string.orderinfo))
             val userInfo = UserInfo(
                 binding.etFullName.text.toString(),
                 binding.etPhoneNumber.text.toString(),
@@ -47,9 +47,9 @@ class PaymentFragment : Fragment() {
                 hour, minutes, amPm
             )
             val bundle = Bundle().apply {
-                putParcelable("orderInfo", orderInfo)
-                putParcelable("userInfo", userInfo)
-                putParcelable("pickerTime", pickerTime)
+                putParcelable(getString(R.string.orderinfo), orderInfo)
+                putParcelable(getString(R.string.userinfo), userInfo)
+                putParcelable(getString(R.string.pickertime), pickerTime)
             }
             if (isValidateCard()) {
                 findNavController().navigate(R.id.orderSummaryFragment, bundle)
@@ -139,13 +139,13 @@ class PaymentFragment : Fragment() {
     private fun isValidateNameAndNumber(): Boolean {
         var isVal = false
         if (binding.etFullName.length() == 0) {
-            binding.etFullName.error = "please enter your name"
+            binding.etFullName.error = getString(R.string.error_valid_name)
             isVal = false
         } else {
             isVal = true
         }
         if (binding.etPhoneNumber.length() != 10) {
-            binding.etPhoneNumber.error = "failed phone number"
+            binding.etPhoneNumber.error = getString(R.string.error_valid_number)
             isVal = false
         } else {
             isVal = true

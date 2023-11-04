@@ -57,7 +57,7 @@ class OrderBuildingFragment : Fragment() {
             selectedCheckBox()
             val orderInfo = OrderInfo(selectedCoffeeType, selectedCoffeeSize, checkBoxList)
             val bundle = bundleOf().apply {
-                putParcelable("orderInfo", orderInfo)
+                putParcelable(getString(R.string.orderinfo), orderInfo)
             }
             findNavController().navigate(R.id.paymentFragment, bundle)
         }
