@@ -54,46 +54,13 @@ class OrderBuildingFragment : Fragment() {
     private fun initListener() {
 
         binding.btnContinue.setOnClickListener {
-                selectedCheckBox()
-                val orderInfo = OrderInfo(selectedCoffeeType, selectedCoffeeSize, checkBoxList)
-                val bundle = bundleOf().apply {
-                    putParcelable("orderInfo", orderInfo)
-                }
-                findNavController().navigate(R.id.paymentFragment, bundle)
-        }
-    }
-
-    private fun isValidate():Boolean {
-        var isVal = true
-        val list = listOf(
-            binding.rbAmericano,
-            binding.rbCappuccino,
-            binding.rbLatte,
-            binding.rbMacchiato
-        )
-        list.forEach {
-            if (!it.isChecked) {
-                binding.tvSelect.error = "Please Select Coffee Type"
-                isVal = false
-            } else {
-                binding.tvSelect.error = null
-                selectedCoffeeType = it.text.toString()
-
+            selectedCheckBox()
+            val orderInfo = OrderInfo(selectedCoffeeType, selectedCoffeeSize, checkBoxList)
+            val bundle = bundleOf().apply {
+                putParcelable("orderInfo", orderInfo)
             }
+            findNavController().navigate(R.id.paymentFragment, bundle)
         }
-        val listTwo = listOf(binding.rbSmall, binding.rbMedium, binding.rbLarg)
-        listTwo.forEach {
-            if (!it.isChecked){
-                binding.tvSize.error = "Please Select Coffee Size"
-                isVal = false
-            }
-            else{
-                binding.tvSize.error = null
-                selectedCoffeeSize = it.text.toString()
-            }
-        }
-
-        return isVal
     }
 
     private fun showCheckBoxOptions() {
@@ -107,6 +74,7 @@ class OrderBuildingFragment : Fragment() {
             selectedCoffeeSize = it.text.toString()
         }
     }
+
     private fun showCoffeeSize() {
         val list = listOf(
             binding.rbAmericano,

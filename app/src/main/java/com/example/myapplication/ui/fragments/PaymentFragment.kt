@@ -92,17 +92,24 @@ class PaymentFragment : Fragment() {
     }
 
     private fun showPickerTime() {
-        binding.clPickerTime.visibility = View.VISIBLE
+        val visibility = View.VISIBLE
+        binding.clPickerTime.visibility = visibility
 
-        binding.npHour.minValue = 1
-        binding.npHour.maxValue = 24
+        val minValueHour = 1
+        val maxValueHour = 24
+        binding.npHour.minValue = minValueHour
+        binding.npHour.maxValue = maxValueHour
 
-        binding.npMinutes.minValue = 0
-        binding.npMinutes.maxValue = 59
+        val minValueMinutes = 0
+        val maxValueMinutes = 59
+        binding.npMinutes.minValue = minValueMinutes
+        binding.npMinutes.maxValue = maxValueMinutes
 
         val str = arrayOf("^", "AM", "PM")
-        binding.npAmPm.minValue = 0
-        binding.npAmPm.maxValue = (str.size - 1)
+        val minValueAmPm = 0
+        val maxValueAmPm = str.size - 1
+        binding.npAmPm.minValue = minValueAmPm
+        binding.npAmPm.maxValue = maxValueAmPm
         binding.npAmPm.displayedValues = str
 
         binding.npHour.setOnValueChangedListener { picker, oldVal, newVal ->
