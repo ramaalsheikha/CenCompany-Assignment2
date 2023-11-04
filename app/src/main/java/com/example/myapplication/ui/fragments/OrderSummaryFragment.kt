@@ -22,34 +22,8 @@ class OrderSummaryFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        val userInfo = arguments?.getParcelable<UserInfo>(getString(R.string.userinfo))
-        binding.tvFullNameInput.text = userInfo?.userName
-        binding.tvPhoneNumberInput.text = userInfo?.userPhone
-        val pickerTime = arguments?.getParcelable<PickerTime>(getString(R.string.pickertime))
-        binding.tvPickupTimeInput.text =
-            "${pickerTime?.hour} : ${pickerTime?.minutes} ${pickerTime?.amPm}"
-        showOrderInfo()
+
     }
 
-    private fun showOrderInfo() {
-        val orderInfo = arguments?.getParcelable<OrderInfo>(getString(R.string.orderinfo))
-        val orderText = StringBuilder()
-        if (orderInfo != null) {
-            if (orderInfo.checkBox.size > 0) {
-                orderText.append("A ${orderInfo.coffeeSize} ${orderInfo.coffeeType} ,with ")
-                when (orderInfo.checkBox.size) {
-                    1 -> orderText.append(orderInfo.checkBox[0])
-                    else -> {
-                        for (i in 0 until orderInfo.checkBox.size - 1) {
-                            orderText.append(orderInfo.checkBox[i]).append(", ")
-                        }
-                        orderText.append("and ").append(orderInfo.checkBox.last())
-                    }
-                }
-            } else {
-                orderText.append("A ${orderInfo.coffeeSize} ${orderInfo.coffeeType}")
-            }
-            binding.tvOrderInput.text = orderText
-        }
-    }
+
 }

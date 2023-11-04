@@ -55,11 +55,8 @@ class OrderBuildingFragment : Fragment() {
 
         binding.btnContinue.setOnClickListener {
             selectedCheckBox()
-            val orderInfo = OrderInfo(selectedCoffeeType, selectedCoffeeSize, checkBoxList)
-            val bundle = bundleOf().apply {
-                putParcelable(getString(R.string.orderinfo), orderInfo)
-            }
-            findNavController().navigate(R.id.paymentFragment, bundle)
+
+            findNavController().navigate(R.id.paymentFragment)
         }
     }
 

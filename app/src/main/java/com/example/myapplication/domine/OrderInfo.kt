@@ -5,7 +5,5 @@ import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class OrderInfo(
-    var  coffeeType: String,
-    var coffeeSize: String ,
-    var checkBox:MutableList<String>
+    var order:MutableList<String>
 ):Parcelable
