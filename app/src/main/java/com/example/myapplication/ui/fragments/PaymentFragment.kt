@@ -62,30 +62,28 @@ class PaymentFragment : Fragment() {
          * Prepare regex for date
          */
         val date = binding.etCardDate.text
-        val regex = "^(3[01]|[12][0-9]|0[1-9])/[0-9]{4}$".toRegex()
+        val regex = getString(R.string.card_date_regex).toRegex()
         val pattern: Pattern = Pattern.compile(regex.toString())
         val matcher = pattern.matcher(date)
-        val isCorrectDate :Boolean = matcher.matches()
+        val isCorrectDate: Boolean = matcher.matches()
 
         var isVal = true
         if (binding.etCardNumber.length() != 16) {
-            binding.etCardNumber.error = "Please enter a valid card number"
+            binding.etCardNumber.error = getString(R.string.error_valid_card_number)
             isVal = false
-        } else  {
+        } else {
             binding.etCardNumber.error = null
         }
-        if (!isCorrectDate){
-            binding.etCardDate.error = "Please enter a valid card date"
-            isVal=false
-        }
-        else{
+        if (!isCorrectDate) {
+            binding.etCardDate.error = getString(R.string.error_valid_card_date)
+            isVal = false
+        } else {
             binding.etCardDate.error = null
         }
-        if (binding.etCardCvv.length()!=3){
-            binding.etCardCvv.error = "Please enter a valid card CVV"
+        if (binding.etCardCvv.length() != 3) {
+            binding.etCardCvv.error = getString(R.string.error_valid_card_cvv)
             isVal = false
-        }
-        else{
+        } else {
             binding.etCardCvv.error = null
         }
         return isVal
@@ -105,7 +103,8 @@ class PaymentFragment : Fragment() {
         binding.npMinutes.minValue = minValueMinutes
         binding.npMinutes.maxValue = maxValueMinutes
 
-        val str = arrayOf("^", "AM", "PM")
+        val str = arrayOf(getString(R.string.first_element), getString(R.string.am),
+            getString(R.string.pm))
         val minValueAmPm = 0
         val maxValueAmPm = str.size - 1
         binding.npAmPm.minValue = minValueAmPm
