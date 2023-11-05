@@ -4,8 +4,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
-import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.myapplication.R
@@ -15,7 +13,8 @@ import com.example.myapplication.domine.OrderInfo
 class OrderBuildingFragment : Fragment() {
     private lateinit var selectedCoffeeType: String
     private lateinit var selectedCoffeeSize: String
-    private lateinit var orderList:MutableList<String>
+    private var orderList: MutableList<String> = mutableListOf()
+    private var checkBoxList: MutableList<String> = mutableListOf()
     private lateinit var binding: FragmentOrderBuildingBinding
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -27,6 +26,7 @@ class OrderBuildingFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+
         showCoffeeSize()
         showCheckBoxOptions()
         initListener()
@@ -43,29 +43,31 @@ class OrderBuildingFragment : Fragment() {
         )
         list.forEach {
             if (it.isChecked) {
-                orderList.add(",")
-                orderList.add(it.text.toString())
+                checkBoxList.add(it.text.toString())
+
             } else {
 
             }
-
+        }
+    }
+    private fun initListener() {
+        binding.btnContinue.setOnClickListener {
+            selectedCheckBox()
+            orderBuilding()
+        val orderInfo = OrderInfo(orderList)
+           val bundle =  Bundle().apply {
+               putParcelable(getString(R.string.orderinfo),orderInfo)
+           }
+            findNavController().navigate(R.id.paymentFragment,bundle)
         }
     }
 
-    private fun initListener() {
-        binding.btnContinue.setOnClickListener {
-            orderList.add("A")
-            orderList.add("$selectedCoffeeSize")
-            orderList.add("$selectedCoffeeType")
-            orderList.add(",with")
-            selectedCheckBox()
-            val orderInfo = OrderInfo(orderList)
-            val bundle = Bundle().apply {
-                putParcelable(getString(R.string.orderinfo),orderInfo)
-            }
-
-            findNavController().navigate(R.id.paymentFragment,bundle)
+    private fun orderBuilding() {
+        orderList.add("A $selectedCoffeeSize $selectedCoffeeType, with ")
+        for (i in 0 until checkBoxList.size-1) {
+           orderList.add(checkBoxList[i]+",")
         }
+        orderList.add("and "+checkBoxList.last())
     }
 
     private fun showCheckBoxOptions() {

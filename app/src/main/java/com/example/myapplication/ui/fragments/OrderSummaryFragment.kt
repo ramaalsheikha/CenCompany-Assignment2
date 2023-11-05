@@ -27,7 +27,7 @@ class OrderSummaryFragment : Fragment() {
 
     private fun showOrderInfo() {
         val orderInfo = arguments?.getParcelable<OrderInfo>(getString(R.string.orderinfo))
-        val order = orderInfo?.order?.joinToString()
+        val order = orderInfo?.order?.joinToString(separator = " ")
         binding.tvOrderInput.text = order
     }
 
