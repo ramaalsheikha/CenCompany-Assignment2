@@ -51,6 +51,8 @@ dependencies {
     //Navigation Component
     implementation("androidx.navigation:navigation-fragment-ktx:2.7.4")
     implementation("androidx.navigation:navigation-ui-ktx:2.7.4")
+    // for adding recyclerview
+    implementation ("androidx.recyclerview:recyclerview:1.2.0")
 
     testImplementation("junit:junit:4.13.2")
     implementation ("com.airbnb.android:lottie:6.1.0")
