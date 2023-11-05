@@ -15,7 +15,7 @@ import com.example.myapplication.domine.OrderInfo
 class OrderBuildingFragment : Fragment() {
     private lateinit var selectedCoffeeType: String
     private lateinit var selectedCoffeeSize: String
-    private var checkBoxList = mutableListOf<String>()
+    private lateinit var orderList:MutableList<String>
     private lateinit var binding: FragmentOrderBuildingBinding
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -43,7 +43,8 @@ class OrderBuildingFragment : Fragment() {
         )
         list.forEach {
             if (it.isChecked) {
-                checkBoxList.add(it.text.toString())
+                orderList.add(",")
+                orderList.add(it.text.toString())
             } else {
 
             }
@@ -52,11 +53,18 @@ class OrderBuildingFragment : Fragment() {
     }
 
     private fun initListener() {
-
         binding.btnContinue.setOnClickListener {
+            orderList.add("A")
+            orderList.add("$selectedCoffeeSize")
+            orderList.add("$selectedCoffeeType")
+            orderList.add(",with")
             selectedCheckBox()
+            val orderInfo = OrderInfo(orderList)
+            val bundle = Bundle().apply {
+                putParcelable(getString(R.string.orderinfo),orderInfo)
+            }
 
-            findNavController().navigate(R.id.paymentFragment)
+            findNavController().navigate(R.id.paymentFragment,bundle)
         }
     }
 
@@ -86,6 +94,7 @@ class OrderBuildingFragment : Fragment() {
                 binding.btnContinueTwo.visibility = View.VISIBLE
             }
             selectedCoffeeType = it.text.toString()
+
         }
     }
 

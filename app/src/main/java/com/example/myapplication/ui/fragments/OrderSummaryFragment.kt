@@ -22,7 +22,13 @@ class OrderSummaryFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        showOrderInfo()
+    }
 
+    private fun showOrderInfo() {
+        val orderInfo = arguments?.getParcelable<OrderInfo>(getString(R.string.orderinfo))
+        val order = orderInfo?.order?.joinToString()
+        binding.tvOrderInput.text = order
     }
 
 
