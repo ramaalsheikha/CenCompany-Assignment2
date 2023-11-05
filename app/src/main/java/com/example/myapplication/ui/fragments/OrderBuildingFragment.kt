@@ -50,24 +50,25 @@ class OrderBuildingFragment : Fragment() {
             }
         }
     }
+
     private fun initListener() {
         binding.btnContinue.setOnClickListener {
             selectedCheckBox()
             orderBuilding()
-        val orderInfo = OrderInfo(orderList)
-           val bundle =  Bundle().apply {
-               putParcelable(getString(R.string.orderinfo),orderInfo)
-           }
-            findNavController().navigate(R.id.paymentFragment,bundle)
+            val orderInfo = OrderInfo(orderList)
+            val bundle = Bundle().apply {
+                putParcelable(getString(R.string.orderinfo), orderInfo)
+            }
+            findNavController().navigate(R.id.paymentFragment, bundle)
         }
     }
 
     private fun orderBuilding() {
         orderList.add("A $selectedCoffeeSize $selectedCoffeeType, with ")
-        for (i in 0 until checkBoxList.size-1) {
-           orderList.add(checkBoxList[i]+",")
+        for (i in 0 until checkBoxList.size - 1) {
+            orderList.add(checkBoxList[i] + ",")
         }
-        orderList.add("and "+checkBoxList.last())
+        orderList.add("and " + checkBoxList.last())
     }
 
     private fun showCheckBoxOptions() {
