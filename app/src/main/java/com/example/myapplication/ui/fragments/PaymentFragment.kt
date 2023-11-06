@@ -11,8 +11,7 @@ import androidx.navigation.fragment.findNavController
 import com.example.myapplication.R
 import com.example.myapplication.databinding.FragmentPaymentBinding
 import com.example.myapplication.domine.OrderInfo
-import com.example.myapplication.domine.PickerTime
-import com.example.myapplication.domine.UserInfo
+import com.example.myapplication.domine.PaymentInfo
 import java.util.regex.Pattern
 
 class PaymentFragment : Fragment() {
@@ -20,6 +19,8 @@ class PaymentFragment : Fragment() {
     private var hour: Int = 1
     private var minutes = 0
     private var amPm = ""
+    private var pickupTime:String = ""
+    private var paymentList:MutableList<String> = mutableListOf()
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -37,19 +38,13 @@ class PaymentFragment : Fragment() {
 
     private fun initListener() {
         binding.btnPlaceOrder.setOnClickListener {
-
+            paymentListBuilding()
             val orderInfo = arguments?.getParcelable<OrderInfo>(getString(R.string.orderinfo))
-            val userInfo = UserInfo(
-                binding.etFullName.text.toString(),
-                binding.etPhoneNumber.text.toString(),
-            )
-            val pickerTime = PickerTime(
-                hour, minutes, amPm
-            )
+            val paymentInfo = PaymentInfo(paymentList)
+
             val bundle = Bundle().apply {
                 putParcelable(getString(R.string.orderinfo), orderInfo)
-                putParcelable(getString(R.string.userinfo), userInfo)
-                putParcelable(getString(R.string.pickertime), pickerTime)
+                putParcelable(getString(R.string.paymentinfo),paymentInfo)
             }
             if (isValidateCard()) {
                 findNavController().navigate(R.id.orderSummaryFragment, bundle)
@@ -57,10 +52,17 @@ class PaymentFragment : Fragment() {
         }
     }
 
+    private fun paymentListBuilding() {
+        val name = binding.etFullName.text
+        val phoneNumber = binding.etPhoneNumber.text
+        pickupTime = "$hour :$minutes $amPm"
+        paymentList.add(name.toString())
+        paymentList.add(phoneNumber.toString())
+        paymentList.add(pickupTime)
+    }
+
     private fun isValidateCard(): Boolean {
-        /**
-         * Prepare regex for date
-         */
+
         val date = binding.etCardDate.text
         val regex = getString(R.string.card_date_regex).toRegex()
         val pattern: Pattern = Pattern.compile(regex.toString())
@@ -103,8 +105,11 @@ class PaymentFragment : Fragment() {
         binding.npMinutes.minValue = minValueMinutes
         binding.npMinutes.maxValue = maxValueMinutes
 
-        val str = arrayOf(getString(R.string.first_element), getString(R.string.am),
-            getString(R.string.pm))
+        val str = arrayOf(
+            getString(R.string.first_element),
+            getString(R.string.am),
+            getString(R.string.pm)
+        )
         val minValueAmPm = 0
         val maxValueAmPm = str.size - 1
         binding.npAmPm.minValue = minValueAmPm
@@ -113,9 +118,11 @@ class PaymentFragment : Fragment() {
 
         binding.npHour.setOnValueChangedListener { picker, oldVal, newVal ->
             hour = picker.value
+
         }
         binding.npMinutes.setOnValueChangedListener { picker, oldVal, newVal ->
             minutes = picker.value
+
         }
         binding.npAmPm.setOnValueChangedListener { picker, oldVal, newVal ->
             val i = picker.value

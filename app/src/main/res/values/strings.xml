@@ -54,6 +54,7 @@
     <string name="summary">Summary</string>
     <string name="order_summary">Order Summary</string>
     <string name="order">Order</string>
+    <string name="paymentinfo">paymentInfo</string>
     <string-array name="cardType" >
 
         <item></item>
