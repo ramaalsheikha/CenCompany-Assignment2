@@ -53,6 +53,7 @@ class OrderBuildingFragment : Fragment() {
 
     private fun initListener() {
         binding.btnContinue.setOnClickListener {
+            selectedCoffeeTypeAndSize()
             selectedCheckBox()
             orderBuilding()
             val orderInfo = OrderInfo(orderList)
@@ -63,12 +64,37 @@ class OrderBuildingFragment : Fragment() {
         }
     }
 
+    private fun selectedCoffeeTypeAndSize() {
+        val list = listOf(
+            binding.rbAmericano,
+            binding.rbCappuccino,
+            binding.rbLatte,
+            binding.rbMacchiato
+        )
+        list.forEach {
+            if (it.isChecked){
+                selectedCoffeeType = it.text.toString()
+            }
+        }
+        val listTwo = listOf(binding.rbSmall, binding.rbMedium, binding.rbLarg)
+        listTwo.forEach {
+            if (it.isChecked){
+                selectedCoffeeSize = it.text.toString()
+            }
+        }
+
+    }
+
     private fun orderBuilding() {
         orderList.add("A $selectedCoffeeSize $selectedCoffeeType, with ")
-        for (i in 0 until checkBoxList.size - 1) {
-            orderList.add(checkBoxList[i] + ",")
+        if (checkBoxList.size==1){
+            orderList.add(checkBoxList[0])
+        }else {
+            for (i in 0 until checkBoxList.size - 1) {
+                orderList.add(checkBoxList[i] + ",")
+            }
+            orderList.add("and " + checkBoxList.last())
         }
-        orderList.add("and " + checkBoxList.last())
     }
 
     private fun showCheckBoxOptions() {
@@ -79,7 +105,7 @@ class OrderBuildingFragment : Fragment() {
                 binding.btnContinueTwo.visibility = View.GONE
                 binding.btnContinue.visibility = View.VISIBLE
             }
-            selectedCoffeeSize = it.text.toString()
+
         }
     }
 
@@ -96,7 +122,7 @@ class OrderBuildingFragment : Fragment() {
                 binding.btnContinueOne.visibility = View.GONE
                 binding.btnContinueTwo.visibility = View.VISIBLE
             }
-            selectedCoffeeType = it.text.toString()
+
 
         }
     }
