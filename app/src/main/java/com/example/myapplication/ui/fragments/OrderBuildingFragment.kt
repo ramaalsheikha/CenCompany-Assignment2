@@ -1,9 +1,11 @@
 package com.example.myapplication.ui.fragments
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.myapplication.R
@@ -53,15 +55,24 @@ class OrderBuildingFragment : Fragment() {
 
     private fun initListener() {
         binding.btnContinue.setOnClickListener {
-            selectedCoffeeTypeAndSize()
-            selectedCheckBox()
-            orderBuilding()
-            val orderInfo = OrderInfo(orderList)
-            val bundle = Bundle().apply {
-                putParcelable(getString(R.string.orderinfo), orderInfo)
+            try {
+                selectedCoffeeTypeAndSize()
+                selectedCheckBox()
+                orderBuilding()
+                val orderInfo = OrderInfo(orderList)
+                val bundle = Bundle().apply {
+                    putParcelable(getString(R.string.orderinfo), orderInfo)
+                }
+                findNavController().navigate(PAYMENT_FRAGMENT_ID, bundle)
+            }catch (e: Exception) {
+                Log.e("OrderBuildingFragment", "Navigation error: ${e.message}")
+                showErrorMessageToUser()
             }
-            findNavController().navigate(R.id.paymentFragment, bundle)
         }
+    }
+
+    private fun showErrorMessageToUser() {
+        Toast.makeText(requireContext(), "Navigation failed. Please try again.", Toast.LENGTH_SHORT).show()
     }
 
     private fun selectedCoffeeTypeAndSize() {
@@ -125,6 +136,9 @@ class OrderBuildingFragment : Fragment() {
 
 
         }
+    }
+    companion object {
+        private  val PAYMENT_FRAGMENT_ID = R.id.paymentFragment
     }
 
 }
