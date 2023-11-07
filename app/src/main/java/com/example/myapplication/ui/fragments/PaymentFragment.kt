@@ -16,6 +16,7 @@ import java.util.regex.Pattern
 
 class PaymentFragment : Fragment() {
     private lateinit var binding: FragmentPaymentBinding
+    private lateinit var name:String
     private var hour: Int = 1
     private var minutes = 0
     private var amPm = ""
@@ -53,10 +54,10 @@ class PaymentFragment : Fragment() {
     }
 
     private fun paymentListBuilding() {
-        val name = binding.etFullName.text
+         name = binding.etFullName.text.toString()
         val phoneNumber = binding.etPhoneNumber.text
         pickupTime = "$hour :$minutes $amPm"
-        paymentList.add(name.toString())
+        paymentList.add(name)
         paymentList.add(phoneNumber.toString())
         paymentList.add(pickupTime)
     }
@@ -139,7 +140,6 @@ class PaymentFragment : Fragment() {
                 binding.btnContinou.visibility = View.GONE
 
             }
-
         }
     }
 
