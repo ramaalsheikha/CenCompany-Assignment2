@@ -1,10 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/LightBrown"
     android:orientation="vertical">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar_pay"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/MediumBrown"
+        app:title="Pay"
+        app:titleTextColor="@color/white"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"/>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="570dp"
+        app:layout_constraintStart_toStartOf="parent"
+   app:layout_constraintTop_toBottomOf="@id/toolbar_pay">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -16,15 +31,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <androidx.appcompat.widget.Toolbar
-                android:id="@+id/toolbar_pay"
-                android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
-                android:background="@color/MediumBrown"
-                app:title="Pay"
-                app:titleTextColor="@color/white"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintStart_toStartOf="parent"/>
+
 
             <TextView
                 android:id="@+id/tv_enterPickup"
@@ -37,7 +44,7 @@
                 android:textSize="25sp"
                 android:textStyle="bold|italic"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/toolbar_pay" />
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/tv_full_name"
@@ -152,16 +159,6 @@
 
             </LinearLayout>
 
-<!--            <TimePicker-->
-<!--                android:id="@+id/tp_time"-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_marginTop="20dp"-->
-<!--                android:timePickerMode="spinner"-->
-<!--                app:layout_constraintEnd_toEndOf="parent"-->
-<!--                app:layout_constraintStart_toStartOf="parent"-->
-<!--                app:layout_constraintTop_toBottomOf="@id/tv_pickup_time" />-->
-
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -257,24 +254,6 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tv_card_expiry" />
 
-<!--            <EditText-->
-<!--                android:id="@+id/et_card_year"-->
-<!--                android:layout_width="80dp"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_marginTop="20dp"-->
-<!--                android:hint="@string/yyy"-->
-<!--                android:inputType="number"-->
-<!--                app:layout_constraintStart_toEndOf="@id/slach"-->
-<!--                app:layout_constraintTop_toBottomOf="@id/tv_card_expiry" />-->
-
-<!--            <TextView-->
-<!--                android:id="@+id/slach"-->
-<!--                android:layout_width="10dp"-->
-<!--                android:layout_height="40dp"-->
-<!--                android:layout_marginTop="30dp"-->
-<!--                android:text="@string/slach"-->
-<!--                app:layout_constraintStart_toEndOf="@id/et_card_month"-->
-<!--                app:layout_constraintTop_toBottomOf="@id/tv_card_expiry" />-->
 
             <EditText
                 android:id="@+id/et_card_cvv"
@@ -301,4 +280,5 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/cl_picker_time" />
     </LinearLayout>
-</ScrollView>
+    </ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>
