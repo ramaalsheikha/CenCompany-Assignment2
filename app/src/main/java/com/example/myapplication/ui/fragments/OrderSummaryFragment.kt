@@ -23,7 +23,7 @@ class OrderSummaryFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-       // showOrderInfo()
+
         showPaymentInfo()
     }
 
