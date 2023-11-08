@@ -29,95 +29,36 @@ class OrderBuildingFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
+        setupIU()
+        setupListener()
+    }
+
+    private fun setupIU() {
         showCoffeeSize()
         showCheckBoxOptions()
-        initListener()
     }
 
-    private fun selectedCheckBox() {
-        val list = listOf(
-            binding.cbSugar,
-            binding.cbCream,
-            binding.cb2shots,
-            binding.cb2milk,
-            binding.cbAlmondMilk,
-            binding.cbWholeMilk
-        )
-        list.forEach {
-            if (it.isChecked) {
-                checkBoxList.add(it.text.toString())
-
-            } else {
-
-            }
-        }
-    }
-
-    private fun initListener() {
+    private fun setupListener() {
         binding.btnContinue.setOnClickListener {
             try {
-                selectedCoffeeTypeAndSize()
-                selectedCheckBox()
-                orderBuilding()
-                val orderInfo = OrderInfo(orderList)
-                val bundle = Bundle().apply {
-                    putParcelable(getString(R.string.orderinfo), orderInfo)
-                }
-                findNavController().navigate(PAYMENT_FRAGMENT_ID, bundle)
-            }catch (e: Exception) {
+                handleOrder()
+            } catch (e: Exception) {
                 Log.e("OrderBuildingFragment", "Navigation error: ${e.message}")
                 showErrorMessageToUser()
             }
         }
     }
 
-    private fun showErrorMessageToUser() {
-        Toast.makeText(requireContext(), "Navigation failed. Please try again.", Toast.LENGTH_SHORT).show()
-    }
-
-    private fun selectedCoffeeTypeAndSize() {
-        val list = listOf(
-            binding.rbAmericano,
-            binding.rbCappuccino,
-            binding.rbLatte,
-            binding.rbMacchiato
-        )
-        list.forEach {
-            if (it.isChecked){
-                selectedCoffeeType = it.text.toString()
-            }
+    private fun handleOrder() {
+        selectedCoffeeType()
+        selectedCoffeeSize()
+        selectedCheckBox()
+        orderBuilding()
+        val orderInfo = OrderInfo(orderList)
+        val bundle = Bundle().apply {
+            putParcelable(getString(R.string.orderinfo), orderInfo)
         }
-        val listTwo = listOf(binding.rbSmall, binding.rbMedium, binding.rbLarg)
-        listTwo.forEach {
-            if (it.isChecked){
-                selectedCoffeeSize = it.text.toString()
-            }
-        }
-
-    }
-
-    private fun orderBuilding() {
-        orderList.add("A $selectedCoffeeSize $selectedCoffeeType, with ")
-        if (checkBoxList.size==1){
-            orderList.add(checkBoxList[0])
-        }else {
-            for (i in 0 until checkBoxList.size - 1) {
-                orderList.add(checkBoxList[i] + ",")
-            }
-            orderList.add("and " + checkBoxList.last())
-        }
-    }
-
-    private fun showCheckBoxOptions() {
-        val list = listOf(binding.rbSmall, binding.rbMedium, binding.rbLarg)
-        list.forEach {
-            it.setOnClickListener {
-                binding.checkBox.visibility = View.VISIBLE
-                binding.btnContinueTwo.visibility = View.GONE
-                binding.btnContinue.visibility = View.VISIBLE
-            }
-
-        }
+        findNavController().navigate(PAYMENT_FRAGMENT_ID, bundle)
     }
 
     private fun showCoffeeSize() {
@@ -133,12 +74,83 @@ class OrderBuildingFragment : Fragment() {
                 binding.btnContinueOne.visibility = View.GONE
                 binding.btnContinueTwo.visibility = View.VISIBLE
             }
+        }
+    }
 
+    private fun showCheckBoxOptions() {
+        val list = listOf(binding.rbSmall, binding.rbMedium, binding.rbLarg)
+        list.forEach {
+            it.setOnClickListener {
+                binding.checkBox.visibility = View.VISIBLE
+                binding.btnContinueTwo.visibility = View.GONE
+                binding.btnContinue.visibility = View.VISIBLE
+            }
 
         }
     }
+
+    private fun selectedCheckBox() {
+        val list = listOf(
+            binding.cbSugar,
+            binding.cbCream,
+            binding.cb2shots,
+            binding.cb2milk,
+            binding.cbAlmondMilk,
+            binding.cbWholeMilk
+        )
+        list.forEach {
+            if (it.isChecked) {
+                checkBoxList.add(it.text.toString())
+
+            }
+        }
+    }
+
+
+    private fun selectedCoffeeSize() {
+        val listTwo = listOf(binding.rbSmall, binding.rbMedium, binding.rbLarg)
+        listTwo.forEach {
+            if (it.isChecked) {
+                selectedCoffeeSize = it.text.toString()
+            }
+        }
+    }
+
+    private fun selectedCoffeeType() {
+        val list = listOf(
+            binding.rbAmericano,
+            binding.rbCappuccino,
+            binding.rbLatte,
+            binding.rbMacchiato
+        )
+        list.forEach {
+            if (it.isChecked) {
+                selectedCoffeeType = it.text.toString()
+            }
+        }
+    }
+
+    private fun orderBuilding() {
+        orderList.add(getString(R.string.a_with, selectedCoffeeSize, selectedCoffeeType))
+        if (checkBoxList.size == 1) {
+            orderList.add(checkBoxList[0])
+        } else {
+            for (i in 0 until checkBoxList.size - 1) {
+                orderList.add(checkBoxList[i] + getString(R.string.comma))
+            }
+            orderList.add(getString(R.string.and) + checkBoxList.last())
+        }
+    }
+
+    private fun showErrorMessageToUser() {
+        Toast.makeText(requireContext(),
+            getString(R.string.navigation_failed_please_try_again), Toast.LENGTH_SHORT)
+            .show()
+    }
+
+
     companion object {
-        private  val PAYMENT_FRAGMENT_ID = R.id.paymentFragment
+        private val PAYMENT_FRAGMENT_ID = R.id.paymentFragment
     }
 
 }

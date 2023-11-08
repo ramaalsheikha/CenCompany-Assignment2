@@ -27,7 +27,7 @@ class PaymentFragment : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentPaymentBinding.inflate(layoutInflater)
         return binding.root
     }
@@ -56,7 +56,7 @@ class PaymentFragment : Fragment() {
 
     private fun paymentListBuilding() {
          name = binding.etFullName.text.toString()
-         phoneNumber = binding.etPhoneNumber.text.toString()
+         this.phoneNumber = binding.etPhoneNumber.text.toString()
         pickupTime = "$hour :$minutes $amPm"
         paymentList.add(name)
         paymentList.add(phoneNumber)

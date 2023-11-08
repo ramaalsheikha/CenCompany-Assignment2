@@ -55,6 +55,10 @@
     <string name="order_summary">Order Summary</string>
     <string name="order">Order</string>
     <string name="paymentinfo">paymentInfo</string>
+    <string name="navigation_failed_please_try_again">Navigation failed. Please try again.</string>
+    <string name="and">"and "</string>
+    <string name="a_with">"A %1$s %2$s, with "</string>
+    <string name="comma">,</string>
     <string-array name="cardType" >
 
         <item></item>

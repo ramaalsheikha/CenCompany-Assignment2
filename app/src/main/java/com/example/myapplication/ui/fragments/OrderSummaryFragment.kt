@@ -24,21 +24,20 @@ class OrderSummaryFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
-        showPaymentInfo()
+        showInfo()
     }
 
-    private fun showPaymentInfo() {
-        binding .recyclerView.layoutManager = LinearLayoutManager(context)
-        val titleList = listOf("Full Name","Phone Number","Pickup Time","Order")
-        val data :MutableList<ItemsViewModel> = mutableListOf()
+    private fun showInfo() {
+        binding.recyclerView.layoutManager = LinearLayoutManager(context)
+        val titleList = listOf("Full Name", "Phone Number", "Pickup Time", "Order")
+        val data: MutableList<ItemsViewModel> = mutableListOf()
         val paymentInfo = arguments?.getParcelable<PaymentInfo>(getString(R.string.paymentinfo))
-        for (i in 0..3){
-            if (i<3) {
+        for (i in 0..3) {
+            if (i < 3) {
                 var title = titleList[i]
                 var content: String = paymentInfo!!.paymentLisl[i]
                 data.add(ItemsViewModel(title, content))
-            }
-            else {
+            } else {
                 val orderInfo = arguments?.getParcelable<OrderInfo>(getString(R.string.orderinfo))
                 val order = orderInfo?.order?.joinToString(separator = " ")
                 data.add(ItemsViewModel(titleList[i], order.toString()))
