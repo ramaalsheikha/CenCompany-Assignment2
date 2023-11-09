@@ -8,7 +8,8 @@
     <fragment
         android:id="@+id/orderBuildingFragment"
         android:name="com.example.myapplication.ui.fragments.OrderBuildingFragment"
-        android:label="OrderBuildingFragment" />
+        android:label="OrderBuildingFragment" >
+    </fragment>
     <fragment
         android:id="@+id/homeFragment"
         android:name="com.example.myapplication.ui.fragments.HomeFragment"
@@ -16,9 +17,12 @@
     <fragment
         android:id="@+id/paymentFragment"
         android:name="com.example.myapplication.ui.fragments.PaymentFragment"
-        android:label="PaymentFragment" />
+        android:label="PaymentFragment" >
+    </fragment>
     <fragment
         android:id="@+id/orderSummaryFragment"
         android:name="com.example.myapplication.ui.fragments.OrderSummaryFragment"
-        android:label="OrderSummaryFragment" />
+        android:label="OrderSummaryFragment" >
+
+    </fragment>
 </navigation>

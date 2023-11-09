@@ -59,6 +59,8 @@
     <string name="and">"and "</string>
     <string name="a_with">"A %1$s %2$s, with "</string>
     <string name="comma">,</string>
+    <string name="orderbuildingfragment">OrderBuildingFragment</string>
+    <string name="navigation_error">Navigation error: %1$s</string>
     <string-array name="cardType" >
 
         <item></item>

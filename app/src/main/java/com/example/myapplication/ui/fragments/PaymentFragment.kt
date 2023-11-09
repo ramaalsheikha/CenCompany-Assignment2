@@ -1,11 +1,13 @@
 package com.example.myapplication.ui.fragments
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.myapplication.R
@@ -16,13 +18,13 @@ import java.util.regex.Pattern
 
 class PaymentFragment : Fragment() {
     private lateinit var binding: FragmentPaymentBinding
-    private lateinit var name:String
-    private lateinit var phoneNumber:String
+    private lateinit var name: String
+    private lateinit var phoneNumber: String
     private var hour: Int = 1
     private var minutes = 0
     private var amPm = ""
-    private var pickupTime:String = ""
-    private var paymentList:MutableList<String> = mutableListOf()
+    private var pickupTime: String = ""
+    private var paymentList: MutableList<String> = mutableListOf()
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -33,34 +35,50 @@ class PaymentFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        showSpinnerAndPickupTime()
-        showCard()
-        initListener()
+        setupUI()
+        setupListener()
     }
 
-    private fun initListener() {
-        binding.btnPlaceOrder.setOnClickListener {
-            paymentListBuilding()
-            val orderInfo = arguments?.getParcelable<OrderInfo>(getString(R.string.orderinfo))
-            val paymentInfo = PaymentInfo(paymentList)
+    private fun setupUI() {
+        showSpinnerAndPickupTime()
+        setSpinnerAdapter()
+        showCard()
+    }
 
-            val bundle = Bundle().apply {
-                putParcelable(getString(R.string.orderinfo), orderInfo)
-                putParcelable(getString(R.string.paymentinfo),paymentInfo)
-            }
-            if (isValidateCard()) {
-                findNavController().navigate(R.id.orderSummaryFragment, bundle)
+    private fun setupListener() {
+        binding.btnPlaceOrder.setOnClickListener {
+            try {
+                paymentListBuilding()
+                val orderInfo = arguments?.getParcelable<OrderInfo>(getString(R.string.orderinfo))
+                val paymentInfo = PaymentInfo(paymentList)
+
+                val bundle = Bundle().apply {
+                    putParcelable(getString(R.string.orderinfo), orderInfo)
+                    putParcelable(getString(R.string.paymentinfo), paymentInfo)
+                }
+                if (isValidateCard()) {
+                    findNavController().navigate(ORDER_SUMMARY_FRAGMENT_ID, bundle)
+                }
+            }catch (error:Exception){
+                Log.e(PAYMENT_FRAGMENT, "Error: ${error.message}")
+                showErrorMessageToUser()
             }
         }
     }
 
+    private fun showErrorMessageToUser() {
+        Toast.makeText(requireContext(), "An error occurred. Please try again.", Toast.LENGTH_SHORT).show()
+    }
+
     private fun paymentListBuilding() {
-         name = binding.etFullName.text.toString()
-         this.phoneNumber = binding.etPhoneNumber.text.toString()
-        pickupTime = "$hour :$minutes $amPm"
-        paymentList.add(name)
-        paymentList.add(phoneNumber)
-        paymentList.add(pickupTime)
+        name = binding.etFullName.text.toString()
+        phoneNumber = binding.etPhoneNumber.text.toString()
+        pickupTime = "$hour:$minutes $amPm"
+        paymentList.apply {
+            add(name)
+            add(phoneNumber)
+            add(pickupTime)
+        }
     }
 
     private fun isValidateCard(): Boolean {
@@ -118,15 +136,15 @@ class PaymentFragment : Fragment() {
         binding.npAmPm.maxValue = maxValueAmPm
         binding.npAmPm.displayedValues = str
 
-        binding.npHour.setOnValueChangedListener { picker, oldVal, newVal ->
+        binding.npHour.setOnValueChangedListener { picker, _, _ ->
             hour = picker.value
 
         }
-        binding.npMinutes.setOnValueChangedListener { picker, oldVal, newVal ->
+        binding.npMinutes.setOnValueChangedListener { picker, _, _ ->
             minutes = picker.value
 
         }
-        binding.npAmPm.setOnValueChangedListener { picker, oldVal, newVal ->
+        binding.npAmPm.setOnValueChangedListener { picker, _, _ ->
             val i = picker.value
             amPm = str[i]
         }
@@ -145,23 +163,23 @@ class PaymentFragment : Fragment() {
     }
 
     private fun isValidateNameAndNumber(): Boolean {
-        var isVal = false
+        val isVal: Boolean
         if (binding.etFullName.length() == 0) {
             binding.etFullName.error = getString(R.string.error_valid_name)
-            isVal = false
         } else {
-            isVal = true
+            binding.etFullName.error = null
         }
         if (binding.etPhoneNumber.length() != 10) {
             binding.etPhoneNumber.error = getString(R.string.error_valid_number)
             isVal = false
         } else {
+            binding.etPhoneNumber.error = null
             isVal = true
         }
         return isVal
     }
 
-    private fun showCard() {
+    private fun setSpinnerAdapter(){
         ArrayAdapter.createFromResource(
             binding.spCardType.context,
             R.array.cardType,
@@ -170,6 +188,10 @@ class PaymentFragment : Fragment() {
             adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
             binding.spCardType.adapter = adapter
         }
+    }
+
+    private fun showCard() {
+
         binding.spCardType.onItemSelectedListener = object : AdapterView.OnItemSelectedListener,
             AdapterView.OnItemClickListener {
             override fun onItemSelected(
@@ -200,5 +222,9 @@ class PaymentFragment : Fragment() {
             ) {
             }
         }
+    }
+    companion object{
+        private const val PAYMENT_FRAGMENT = "PaymentFragment"
+        private  val ORDER_SUMMARY_FRAGMENT_ID= R.id.orderSummaryFragment
     }
 }

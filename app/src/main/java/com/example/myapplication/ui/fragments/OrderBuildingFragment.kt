@@ -5,6 +5,8 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.CheckBox
+import android.widget.RadioButton
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
@@ -13,7 +15,7 @@ import com.example.myapplication.databinding.FragmentOrderBuildingBinding
 import com.example.myapplication.domine.OrderInfo
 
 class OrderBuildingFragment : Fragment() {
-    private lateinit var selectedCoffeeType: String
+    private lateinit var selectedCoffeeType:String
     private lateinit var selectedCoffeeSize: String
     private var orderList: MutableList<String> = mutableListOf()
     private var checkBoxList: MutableList<String> = mutableListOf()
@@ -43,7 +45,8 @@ class OrderBuildingFragment : Fragment() {
             try {
                 handleOrder()
             } catch (e: Exception) {
-                Log.e("OrderBuildingFragment", "Navigation error: ${e.message}")
+                Log.e(getString(R.string.orderbuildingfragment),
+                    getString(R.string.navigation_error, e.message))
                 showErrorMessageToUser()
             }
         }
@@ -72,7 +75,6 @@ class OrderBuildingFragment : Fragment() {
             it.setOnClickListener {
                 binding.clCoffeeSizePart.visibility = View.VISIBLE
                 binding.btnContinueOne.visibility = View.GONE
-                binding.btnContinueTwo.visibility = View.VISIBLE
             }
         }
     }
@@ -98,9 +100,9 @@ class OrderBuildingFragment : Fragment() {
             binding.cbAlmondMilk,
             binding.cbWholeMilk
         )
-        list.forEach {
-            if (it.isChecked) {
-                checkBoxList.add(it.text.toString())
+        list.forEach {checkBox: CheckBox ->
+            if (checkBox.isChecked) {
+                checkBoxList.add(checkBox.text.toString())
 
             }
         }
@@ -109,9 +111,9 @@ class OrderBuildingFragment : Fragment() {
 
     private fun selectedCoffeeSize() {
         val listTwo = listOf(binding.rbSmall, binding.rbMedium, binding.rbLarg)
-        listTwo.forEach {
-            if (it.isChecked) {
-                selectedCoffeeSize = it.text.toString()
+        listTwo.forEach { coffeeSizeView: RadioButton ->
+            if (coffeeSizeView.isChecked) {
+                selectedCoffeeSize = coffeeSizeView.text.toString()
             }
         }
     }
@@ -123,9 +125,9 @@ class OrderBuildingFragment : Fragment() {
             binding.rbLatte,
             binding.rbMacchiato
         )
-        list.forEach {
-            if (it.isChecked) {
-                selectedCoffeeType = it.text.toString()
+        list.forEach {coffeeTypeView: RadioButton ->
+            if (coffeeTypeView.isChecked) {
+                selectedCoffeeType = coffeeTypeView.text.toString()
             }
         }
     }

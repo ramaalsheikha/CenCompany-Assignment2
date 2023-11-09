@@ -17,13 +17,12 @@ class OrderSummaryFragment : Fragment() {
     private lateinit var binding: FragmentOrderSummaryBinding
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentOrderSummaryBinding.inflate(layoutInflater)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-
         showInfo()
     }
 
@@ -34,8 +33,8 @@ class OrderSummaryFragment : Fragment() {
         val paymentInfo = arguments?.getParcelable<PaymentInfo>(getString(R.string.paymentinfo))
         for (i in 0..3) {
             if (i < 3) {
-                var title = titleList[i]
-                var content: String = paymentInfo!!.paymentLisl[i]
+                val title = titleList[i]
+                val content: String = paymentInfo!!.paymentLisl[i]
                 data.add(ItemsViewModel(title, content))
             } else {
                 val orderInfo = arguments?.getParcelable<OrderInfo>(getString(R.string.orderinfo))
@@ -46,6 +45,4 @@ class OrderSummaryFragment : Fragment() {
         val adapter = RecyclerViewAdapter(data)
         binding.recyclerView.adapter = adapter
     }
-
-
 }
