@@ -10,6 +10,8 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.myapplication.R
 import com.example.myapplication.adapter.RecyclerViewAdapter
+import com.example.myapplication.constants.ErrorMessage
+import com.example.myapplication.constants.Key
 import com.example.myapplication.databinding.FragmentOrderSummaryBinding
 import com.example.myapplication.domine.ItemsViewModel
 import com.example.myapplication.domine.OrderInfo
@@ -49,19 +51,8 @@ class OrderSummaryFragment : Fragment() {
             val adapter = RecyclerViewAdapter(data)
             binding.recyclerView.adapter = adapter
         } catch (error: Exception) {
-            Log.e(SUMMARY_FRAGMENT, "Error: ${error.message}")
-            showErrorMessage()
+            Log.e(Key.SUMMARY_FRAGMENT, error.message.toString())
+            ErrorMessage.showErrorMessage(requireContext(),R.string.navigation_failed_please_try_again)
         }
-    }
-
-    private fun showErrorMessage() {
-        Toast.makeText(
-            requireContext(),
-            getString(R.string.an_error_occurred_please_try_again), Toast.LENGTH_SHORT
-        ).show()
-    }
-
-    companion object {
-        private const val SUMMARY_FRAGMENT = "SummaryFragment"
     }
 }

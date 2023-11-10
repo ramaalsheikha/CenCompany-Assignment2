@@ -11,6 +11,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.myapplication.R
+import com.example.myapplication.constants.ErrorMessage
 import com.example.myapplication.constants.Id
 import com.example.myapplication.constants.Key
 import com.example.myapplication.databinding.FragmentOrderBuildingBinding
@@ -47,11 +48,8 @@ class OrderBuildingFragment : Fragment() {
             try {
                 handleOrder()
             } catch (e: Exception) {
-                Log.e(
-                    getString(R.string.orderbuildingfragment),
-                    getString(R.string.navigation_error, e.message)
-                )
-                showErrorMessageToUser()
+                Log.e(Key.ORDER_BUILDING__FRAGMENT, e.message.toString())
+                ErrorMessage.showErrorMessage(requireContext(),R.string.navigation_failed_please_try_again)
             }
         }
     }
@@ -147,16 +145,4 @@ class OrderBuildingFragment : Fragment() {
             orderList.add(getString(R.string.and) + checkBoxList.last())
         }
     }
-
-    private fun showErrorMessageToUser() {
-        Toast.makeText(
-            requireContext(),
-            getString(R.string.navigation_failed_please_try_again), Toast.LENGTH_SHORT
-        )
-            .show()
-    }
-
-
-
-
 }

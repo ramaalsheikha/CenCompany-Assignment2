@@ -11,6 +11,9 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.myapplication.R
+import com.example.myapplication.constants.ErrorMessage
+import com.example.myapplication.constants.Id
+import com.example.myapplication.constants.Key
 import com.example.myapplication.databinding.FragmentPaymentBinding
 import com.example.myapplication.domine.OrderInfo
 import com.example.myapplication.domine.PaymentInfo
@@ -57,20 +60,14 @@ class PaymentFragment : Fragment() {
                     putParcelable(getString(R.string.paymentinfo), paymentInfo)
                 }
                 if (isValidateCard()) {
-                    findNavController().navigate(ORDER_SUMMARY_FRAGMENT_ID, bundle)
+                    findNavController().navigate(Id.ORDER_SUMMARY_FRAGMENT_ID, bundle)
                 }
             } catch (error: Exception) {
-                Log.e(PAYMENT_FRAGMENT, "Error: ${error.message}")
-                showErrorMessageToUser()
+                Log.e(Key.PAYMENT_FRAGMENT, error.message.toString())
+                ErrorMessage.showErrorMessage(requireContext(),R.string.navigation_failed_please_try_again)
             }
         }
     }
-
-    private fun showErrorMessageToUser() {
-        Toast.makeText(requireContext(), "An error occurred. Please try again.", Toast.LENGTH_SHORT)
-            .show()
-    }
-
     private fun paymentListBuilding() {
         name = binding.etFullName.text.toString()
         phoneNumber = binding.etPhoneNumber.text.toString()
@@ -223,10 +220,5 @@ class PaymentFragment : Fragment() {
             ) {
             }
         }
-    }
-
-    companion object {
-        private const val PAYMENT_FRAGMENT = "PaymentFragment"
-        private val ORDER_SUMMARY_FRAGMENT_ID = R.id.orderSummaryFragment
     }
 }
