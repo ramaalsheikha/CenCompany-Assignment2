@@ -61,6 +61,7 @@
     <string name="comma">,</string>
     <string name="orderbuildingfragment">OrderBuildingFragment</string>
     <string name="navigation_error">Navigation error: %1$s</string>
+    <string name="an_error_occurred_please_try_again">An error occurred. Please try again.</string>
     <string-array name="cardType" >
 
         <item></item>

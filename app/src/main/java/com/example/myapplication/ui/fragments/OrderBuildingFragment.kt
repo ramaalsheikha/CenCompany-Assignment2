@@ -15,7 +15,7 @@ import com.example.myapplication.databinding.FragmentOrderBuildingBinding
 import com.example.myapplication.domine.OrderInfo
 
 class OrderBuildingFragment : Fragment() {
-    private lateinit var selectedCoffeeType:String
+    private lateinit var selectedCoffeeType: String
     private lateinit var selectedCoffeeSize: String
     private var orderList: MutableList<String> = mutableListOf()
     private var checkBoxList: MutableList<String> = mutableListOf()
@@ -45,8 +45,10 @@ class OrderBuildingFragment : Fragment() {
             try {
                 handleOrder()
             } catch (e: Exception) {
-                Log.e(getString(R.string.orderbuildingfragment),
-                    getString(R.string.navigation_error, e.message))
+                Log.e(
+                    getString(R.string.orderbuildingfragment),
+                    getString(R.string.navigation_error, e.message)
+                )
                 showErrorMessageToUser()
             }
         }
@@ -100,7 +102,7 @@ class OrderBuildingFragment : Fragment() {
             binding.cbAlmondMilk,
             binding.cbWholeMilk
         )
-        list.forEach {checkBox: CheckBox ->
+        list.forEach { checkBox: CheckBox ->
             if (checkBox.isChecked) {
                 checkBoxList.add(checkBox.text.toString())
 
@@ -125,7 +127,7 @@ class OrderBuildingFragment : Fragment() {
             binding.rbLatte,
             binding.rbMacchiato
         )
-        list.forEach {coffeeTypeView: RadioButton ->
+        list.forEach { coffeeTypeView: RadioButton ->
             if (coffeeTypeView.isChecked) {
                 selectedCoffeeType = coffeeTypeView.text.toString()
             }
@@ -145,8 +147,10 @@ class OrderBuildingFragment : Fragment() {
     }
 
     private fun showErrorMessageToUser() {
-        Toast.makeText(requireContext(),
-            getString(R.string.navigation_failed_please_try_again), Toast.LENGTH_SHORT)
+        Toast.makeText(
+            requireContext(),
+            getString(R.string.navigation_failed_please_try_again), Toast.LENGTH_SHORT
+        )
             .show()
     }
 

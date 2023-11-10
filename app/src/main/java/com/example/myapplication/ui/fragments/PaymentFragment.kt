@@ -59,7 +59,7 @@ class PaymentFragment : Fragment() {
                 if (isValidateCard()) {
                     findNavController().navigate(ORDER_SUMMARY_FRAGMENT_ID, bundle)
                 }
-            }catch (error:Exception){
+            } catch (error: Exception) {
                 Log.e(PAYMENT_FRAGMENT, "Error: ${error.message}")
                 showErrorMessageToUser()
             }
@@ -67,7 +67,8 @@ class PaymentFragment : Fragment() {
     }
 
     private fun showErrorMessageToUser() {
-        Toast.makeText(requireContext(), "An error occurred. Please try again.", Toast.LENGTH_SHORT).show()
+        Toast.makeText(requireContext(), "An error occurred. Please try again.", Toast.LENGTH_SHORT)
+            .show()
     }
 
     private fun paymentListBuilding() {
@@ -179,7 +180,7 @@ class PaymentFragment : Fragment() {
         return isVal
     }
 
-    private fun setSpinnerAdapter(){
+    private fun setSpinnerAdapter() {
         ArrayAdapter.createFromResource(
             binding.spCardType.context,
             R.array.cardType,
@@ -223,8 +224,9 @@ class PaymentFragment : Fragment() {
             }
         }
     }
-    companion object{
+
+    companion object {
         private const val PAYMENT_FRAGMENT = "PaymentFragment"
-        private  val ORDER_SUMMARY_FRAGMENT_ID= R.id.orderSummaryFragment
+        private val ORDER_SUMMARY_FRAGMENT_ID = R.id.orderSummaryFragment
     }
 }
