@@ -1,4 +1,5 @@
 package com.example.myapplication.ui.fragments
+
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -8,6 +9,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.myapplication.R
+import com.example.myapplication.constants.Key
 import com.example.myapplication.databinding.FragmentHomeBinding
 
 class HomeFragment : Fragment() {
@@ -29,21 +31,25 @@ class HomeFragment : Fragment() {
     private fun initListener() {
 
         binding.btnStart.setOnClickListener {
-            try {
-                findNavController().navigate(ORDER_BUILDING_FRAGMENT_ID)
-            } catch (e:Exception){
-                Log.e(HOME_FRAGMENT, "Navigation error: ${e.message}")
-                showErrorMessageToUser()
-            }
+            navigateToOrderBuildingFragment()
+        }
+    }
+
+    private fun navigateToOrderBuildingFragment() {
+        try {
+            findNavController().navigate(Key.ORDER_BUILDING_FRAGMENT_ID)
+        } catch (error: Exception) {
+            logError("Navigation error: ${error.message}")
+            showErrorMessageToUser()
         }
     }
 
     private fun showErrorMessageToUser() {
-        Toast.makeText(requireContext(), "Navigation failed. Please try again.", Toast.LENGTH_SHORT).show()
+        Toast.makeText(requireContext(), "Navigation failed. Please try again.", Toast.LENGTH_SHORT)
+            .show()
     }
 
-    companion object {
-        private  val ORDER_BUILDING_FRAGMENT_ID = R.id.orderBuildingFragment
-        private const val HOME_FRAGMENT = "HomeFragment"
+    private fun logError(message: String) {
+        Log.e(Key.HOME_FRAGMENT, message)
     }
 }
