@@ -11,6 +11,8 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.myapplication.R
+import com.example.myapplication.constants.Id
+import com.example.myapplication.constants.Key
 import com.example.myapplication.databinding.FragmentOrderBuildingBinding
 import com.example.myapplication.domine.OrderInfo
 
@@ -63,7 +65,7 @@ class OrderBuildingFragment : Fragment() {
         val bundle = Bundle().apply {
             putParcelable(getString(R.string.orderinfo), orderInfo)
         }
-        findNavController().navigate(PAYMENT_FRAGMENT_ID, bundle)
+        findNavController().navigate(Id.PAYMENT_FRAGMENT_ID, bundle)
     }
 
     private fun showCoffeeSize() {
@@ -155,8 +157,6 @@ class OrderBuildingFragment : Fragment() {
     }
 
 
-    companion object {
-        private val PAYMENT_FRAGMENT_ID = R.id.paymentFragment
-    }
+
 
 }
