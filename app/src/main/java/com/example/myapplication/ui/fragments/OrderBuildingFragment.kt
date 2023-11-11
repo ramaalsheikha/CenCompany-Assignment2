@@ -105,27 +105,23 @@ class OrderBuildingFragment : Fragment() {
             binding.cbAlmondMilk,
             binding.cbWholeMilk
         )
-        coffeeCheckBoxList.forEach { checkBox: CheckBox ->
-            if (checkBox.isChecked) {
-                checkBoxList.add(checkBox.text.toString())
-            }
-        }
+        checkBoxList.addAll(
+            coffeeCheckBoxList
+                .filter { it.isChecked }
+                .map { it.text.toString() }
+        )
     }
 
     private fun selectedCoffeeSize() {
-      selectedCoffeeSize =  selectedValue(coffeeSizeList)
+        selectedCoffeeSize = selectedValue(coffeeSizeList).joinToString()
     }
 
     private fun selectedCoffeeType() {
-       selectedCoffeeType = selectedValue(coffeeTypeList)
+        selectedCoffeeType = selectedValue(coffeeTypeList).joinToString()
     }
-    private fun selectedValue(list:List<RadioButton>):String{
-        list.forEach {
-            if (it.isChecked){
-                return it.text.toString()
-            }
-        }
-        return ""
+
+    private fun selectedValue(list: List<RadioButton>): List<String> {
+        return list.filter { it.isChecked }.map { it.text.toString() }
     }
 
     private fun orderBuilding() {
