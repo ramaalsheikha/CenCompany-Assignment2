@@ -5,10 +5,8 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
-import com.airbnb.lottie.L
 import com.example.myapplication.R
 import com.example.myapplication.constants.ErrorMessage
 import com.example.myapplication.constants.Id
@@ -34,7 +32,7 @@ class HomeFragment : Fragment() {
     private fun initListener() {
 
         binding.btnStart.setOnClickListener {
-            navigateToOrderBuildingFragment()
+            findNavController().navigate(R.id.orderBuildingFragment)
         }
     }
 

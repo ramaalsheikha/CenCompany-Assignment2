@@ -18,11 +18,20 @@ import com.example.myapplication.databinding.FragmentOrderBuildingBinding
 import com.example.myapplication.domine.OrderInfo
 
 class OrderBuildingFragment : Fragment() {
+    private lateinit var binding: FragmentOrderBuildingBinding
     private lateinit var selectedCoffeeType: String
     private lateinit var selectedCoffeeSize: String
     private var orderList: MutableList<String> = mutableListOf()
     private var checkBoxList: MutableList<String> = mutableListOf()
-    private lateinit var binding: FragmentOrderBuildingBinding
+    private val coffeeTypeList by lazy {
+        listOf(
+            binding.rbAmericano, binding.rbCappuccino, binding.rbLatte, binding.rbMacchiato
+        )
+    }
+    private val coffeeSizeList by lazy {
+        listOf(binding.rbSmall, binding.rbMedium, binding.rbLarg)
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -33,7 +42,6 @@ class OrderBuildingFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-
         setupIU()
         setupListener()
     }
@@ -49,7 +57,10 @@ class OrderBuildingFragment : Fragment() {
                 handleOrder()
             } catch (e: Exception) {
                 Log.e(Key.ORDER_BUILDING__FRAGMENT, e.message.toString())
-                ErrorMessage.showErrorMessage(requireContext(),R.string.navigation_failed_please_try_again)
+                ErrorMessage.showErrorMessage(
+                    requireContext(),
+                    R.string.navigation_failed_please_try_again
+                )
             }
         }
     }
@@ -67,13 +78,7 @@ class OrderBuildingFragment : Fragment() {
     }
 
     private fun showCoffeeSize() {
-        val list = listOf(
-            binding.rbAmericano,
-            binding.rbCappuccino,
-            binding.rbLatte,
-            binding.rbMacchiato
-        )
-        list.forEach {
+        coffeeTypeList.forEach {
             it.setOnClickListener {
                 binding.clCoffeeSizePart.visibility = View.VISIBLE
                 binding.btnContinueOne.visibility = View.GONE
@@ -82,19 +87,17 @@ class OrderBuildingFragment : Fragment() {
     }
 
     private fun showCheckBoxOptions() {
-        val list = listOf(binding.rbSmall, binding.rbMedium, binding.rbLarg)
-        list.forEach {
+        coffeeSizeList.forEach {
             it.setOnClickListener {
                 binding.checkBox.visibility = View.VISIBLE
                 binding.btnContinueTwo.visibility = View.GONE
                 binding.btnContinue.visibility = View.VISIBLE
             }
-
         }
     }
 
     private fun selectedCheckBox() {
-        val list = listOf(
+        val coffeeCheckBoxList = listOf(
             binding.cbSugar,
             binding.cbCream,
             binding.cb2shots,
@@ -102,36 +105,27 @@ class OrderBuildingFragment : Fragment() {
             binding.cbAlmondMilk,
             binding.cbWholeMilk
         )
-        list.forEach { checkBox: CheckBox ->
+        coffeeCheckBoxList.forEach { checkBox: CheckBox ->
             if (checkBox.isChecked) {
                 checkBoxList.add(checkBox.text.toString())
-
             }
         }
     }
 
-
     private fun selectedCoffeeSize() {
-        val listTwo = listOf(binding.rbSmall, binding.rbMedium, binding.rbLarg)
-        listTwo.forEach { coffeeSizeView: RadioButton ->
-            if (coffeeSizeView.isChecked) {
-                selectedCoffeeSize = coffeeSizeView.text.toString()
-            }
-        }
+      selectedCoffeeSize =  selectedValue(coffeeSizeList)
     }
 
     private fun selectedCoffeeType() {
-        val list = listOf(
-            binding.rbAmericano,
-            binding.rbCappuccino,
-            binding.rbLatte,
-            binding.rbMacchiato
-        )
-        list.forEach { coffeeTypeView: RadioButton ->
-            if (coffeeTypeView.isChecked) {
-                selectedCoffeeType = coffeeTypeView.text.toString()
+       selectedCoffeeType = selectedValue(coffeeTypeList)
+    }
+    private fun selectedValue(list:List<RadioButton>):String{
+        list.forEach {
+            if (it.isChecked){
+                return it.text.toString()
             }
         }
+        return ""
     }
 
     private fun orderBuilding() {
