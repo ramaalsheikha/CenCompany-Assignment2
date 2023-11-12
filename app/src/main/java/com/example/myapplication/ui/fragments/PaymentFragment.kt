@@ -62,6 +62,7 @@ class PaymentFragment : Fragment() {
                 }
             } catch (e: Exception) {
                 ErrorMessage.logMessage(Key.PAYMENT_FRAGMENT,e.message.toString())
+                Log.e(Key.PAYMENT_FRAGMENT, e.message.toString())
                 ErrorMessage.showErrorMessage(requireContext(),R.string.navigation_failed_please_try_again)
             }
         }

@@ -1,7 +1,6 @@
 package com.example.myapplication.ui.fragments
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -53,7 +52,7 @@ class OrderBuildingFragment : Fragment() {
             try {
                 handleOrder()
             } catch (e: Exception) {
-                ErrorMessage.logMessage(Key.ORDER_BUILDING__FRAGMENT,e.message.toString())
+                ErrorMessage.logMessage(Key.ORDER_BUILDING__FRAGMENT, e.message.toString())
                 ErrorMessage.showErrorMessage(
                     requireContext(),
                     R.string.navigation_failed_please_try_again

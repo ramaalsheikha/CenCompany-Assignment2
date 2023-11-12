@@ -12,6 +12,7 @@ import com.example.myapplication.R
 import com.example.myapplication.adapter.RecyclerViewAdapter
 import com.example.myapplication.constants.ErrorMessage
 import com.example.myapplication.constants.Key
+import com.example.myapplication.constants.Subtitles
 import com.example.myapplication.databinding.FragmentOrderSummaryBinding
 import com.example.myapplication.domine.ItemsViewModel
 import com.example.myapplication.domine.OrderInfo
@@ -19,7 +20,9 @@ import com.example.myapplication.domine.PaymentInfo
 
 class OrderSummaryFragment : Fragment() {
     private lateinit var binding: FragmentOrderSummaryBinding
-    private val titleList = listOf("Full Name", "Phone Number", "Pickup Time", "Order")
+    private lateinit var paymentInfo: PaymentInfo
+    private lateinit var orderInfo: OrderInfo
+    private val titleList = listOf(Subtitles.FULL_NAME, Subtitles.PHONE_NUMBER, Subtitles.PICKUP_TIME, Subtitles.ORDER)
     private val data: MutableList<ItemsViewModel> = mutableListOf()
 
     override fun onCreateView(
@@ -30,29 +33,36 @@ class OrderSummaryFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        grtData()
         showInfo()
+    }
+
+    private fun grtData() {
+        paymentInfo = arguments?.getParcelable(getString(R.string.paymentinfo))!!
+        orderInfo = arguments?.getParcelable(getString(R.string.orderinfo))!!
     }
 
     private fun showInfo() {
         try {
             binding.recyclerView.layoutManager = LinearLayoutManager(context)
-            val paymentInfo = arguments?.getParcelable<PaymentInfo>(getString(R.string.paymentinfo))
-            val orderInfo = arguments?.getParcelable<OrderInfo>(getString(R.string.orderinfo))
             for (i in titleList.indices) {
                 val title = titleList[i]
                 if (i < titleList.size - 1) {
-                    val content: String = paymentInfo!!.paymentLisl[i]
+                    val content: String = paymentInfo.paymentLisl[i]
                     data.add(ItemsViewModel(title, content))
                 } else {
-                    val order = orderInfo?.order?.joinToString(separator = " ")
-                    data.add(ItemsViewModel(title, order.toString()))
+                    val order = orderInfo.order.joinToString(separator = " ")
+                    data.add(ItemsViewModel(title, order))
                 }
             }
             val adapter = RecyclerViewAdapter(data)
             binding.recyclerView.adapter = adapter
         } catch (e: Exception) {
-            ErrorMessage.logMessage(Key.SUMMARY_FRAGMENT,e.message.toString())
-            ErrorMessage.showErrorMessage(requireContext(),R.string.navigation_failed_please_try_again)
+            ErrorMessage.logMessage(Key.SUMMARY_FRAGMENT, e.message.toString())
+            ErrorMessage.showErrorMessage(
+                requireContext(),
+                R.string.navigation_failed_please_try_again
+            )
         }
     }
 }
