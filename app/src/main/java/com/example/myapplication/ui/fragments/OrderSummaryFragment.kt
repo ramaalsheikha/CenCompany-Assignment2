@@ -50,8 +50,8 @@ class OrderSummaryFragment : Fragment() {
             }
             val adapter = RecyclerViewAdapter(data)
             binding.recyclerView.adapter = adapter
-        } catch (error: Exception) {
-            Log.e(Key.SUMMARY_FRAGMENT, error.message.toString())
+        } catch (e: Exception) {
+            ErrorMessage.logMessage(Key.SUMMARY_FRAGMENT,e.message.toString())
             ErrorMessage.showErrorMessage(requireContext(),R.string.navigation_failed_please_try_again)
         }
     }

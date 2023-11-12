@@ -5,14 +5,11 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.CheckBox
 import android.widget.RadioButton
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.myapplication.R
 import com.example.myapplication.constants.ErrorMessage
-import com.example.myapplication.constants.Id
 import com.example.myapplication.constants.Key
 import com.example.myapplication.databinding.FragmentOrderBuildingBinding
 import com.example.myapplication.domine.OrderInfo
@@ -56,7 +53,7 @@ class OrderBuildingFragment : Fragment() {
             try {
                 handleOrder()
             } catch (e: Exception) {
-                Log.e(Key.ORDER_BUILDING__FRAGMENT, e.message.toString())
+                ErrorMessage.logMessage(Key.ORDER_BUILDING__FRAGMENT,e.message.toString())
                 ErrorMessage.showErrorMessage(
                     requireContext(),
                     R.string.navigation_failed_please_try_again
@@ -74,7 +71,7 @@ class OrderBuildingFragment : Fragment() {
         val bundle = Bundle().apply {
             putParcelable(getString(R.string.orderinfo), orderInfo)
         }
-        findNavController().navigate(Id.PAYMENT_FRAGMENT_ID, bundle)
+        findNavController().navigate(R.id.paymentFragment, bundle)
     }
 
     private fun showCoffeeSize() {

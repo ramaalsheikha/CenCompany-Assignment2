@@ -7,12 +7,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.myapplication.R
 import com.example.myapplication.constants.ErrorMessage
-import com.example.myapplication.constants.Id
 import com.example.myapplication.constants.Key
 import com.example.myapplication.databinding.FragmentPaymentBinding
 import com.example.myapplication.domine.OrderInfo
@@ -60,10 +58,10 @@ class PaymentFragment : Fragment() {
                     putParcelable(getString(R.string.paymentinfo), paymentInfo)
                 }
                 if (isValidateCard()) {
-                    findNavController().navigate(Id.ORDER_SUMMARY_FRAGMENT_ID, bundle)
+                    findNavController().navigate(R.id.orderSummaryFragment, bundle)
                 }
-            } catch (error: Exception) {
-                Log.e(Key.PAYMENT_FRAGMENT, error.message.toString())
+            } catch (e: Exception) {
+                ErrorMessage.logMessage(Key.PAYMENT_FRAGMENT,e.message.toString())
                 ErrorMessage.showErrorMessage(requireContext(),R.string.navigation_failed_please_try_again)
             }
         }
