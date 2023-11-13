@@ -66,7 +66,7 @@
     <string name="full_name_two">Full Name</string>
     <string-array name="cardType" >
 
-        <item></item>
+        <item>_</item>
         <item>Visa</item>
         <item>Mastercard</item>
     </string-array>

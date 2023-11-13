@@ -12,6 +12,7 @@ import androidx.navigation.fragment.findNavController
 import com.example.myapplication.R
 import com.example.myapplication.constants.ErrorMessage
 import com.example.myapplication.constants.Key
+import com.example.myapplication.constants.NavigationIds
 import com.example.myapplication.databinding.FragmentPaymentBinding
 import com.example.myapplication.domine.OrderInfo
 import com.example.myapplication.domine.PaymentInfo
@@ -23,8 +24,8 @@ class PaymentFragment : Fragment() {
     private lateinit var phoneNumber: String
     private var hour: Int = 1
     private var minutes = 0
-    private var amPm = ""
-    private var pickupTime: String = ""
+    private var amPm = "AM"
+    private lateinit var pickupTime: String
     private var paymentList: MutableList<String> = mutableListOf()
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -52,21 +53,23 @@ class PaymentFragment : Fragment() {
                 paymentListBuilding()
                 val orderInfo = arguments?.getParcelable<OrderInfo>(getString(R.string.orderinfo))
                 val paymentInfo = PaymentInfo(paymentList)
-
                 val bundle = Bundle().apply {
                     putParcelable(getString(R.string.orderinfo), orderInfo)
                     putParcelable(getString(R.string.paymentinfo), paymentInfo)
                 }
                 if (isValidateCard()) {
-                    findNavController().navigate(R.id.orderSummaryFragment, bundle)
+                    findNavController().navigate(NavigationIds.SUMMARY_FRAGMENT_ID, bundle)
                 }
             } catch (e: Exception) {
-                ErrorMessage.logMessage(Key.PAYMENT_FRAGMENT,e.message.toString())
-                Log.e(Key.PAYMENT_FRAGMENT, e.message.toString())
-                ErrorMessage.showErrorMessage(requireContext(),R.string.navigation_failed_please_try_again)
+                ErrorMessage.logMessage(Key.PAYMENT_FRAGMENT, e.message.toString())
+                ErrorMessage.showErrorMessage(
+                    requireContext(),
+                    R.string.navigation_failed_please_try_again
+                )
             }
         }
     }
+
     private fun paymentListBuilding() {
         name = binding.etFullName.text.toString()
         phoneNumber = binding.etPhoneNumber.text.toString()
@@ -123,7 +126,6 @@ class PaymentFragment : Fragment() {
         binding.npMinutes.maxValue = maxValueMinutes
 
         val str = arrayOf(
-            getString(R.string.first_element),
             getString(R.string.am),
             getString(R.string.pm)
         )
@@ -149,11 +151,11 @@ class PaymentFragment : Fragment() {
     }
 
     private fun showSpinnerAndPickupTime() {
-        binding.btnContinou.setOnClickListener {
+        binding.btnPlaceOrderOne.setOnClickListener {
             if (isValidateNameAndNumber()) {
                 binding.clSpinner.visibility = View.VISIBLE
                 showPickerTime()
-                binding.btnContinou.visibility = View.GONE
+                binding.btnPlaceOrderOne.visibility = View.GONE
 
             }
         }
@@ -188,36 +190,23 @@ class PaymentFragment : Fragment() {
     }
 
     private fun showCard() {
-
-        binding.spCardType.onItemSelectedListener = object : AdapterView.OnItemSelectedListener,
-            AdapterView.OnItemClickListener {
+        binding.spCardType.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(
-                parent: AdapterView<*>?,
-                view: View?,
-                position: Int,
-                id: Long
+                parent: AdapterView<*>?, view: View?, position: Int, id: Long
             ) {
                 val selectedItem = parent?.getItemAtPosition(position).toString()
-
-                if (selectedItem.isEmpty()) {
-                    binding.clCard.visibility = View.GONE
-                } else {
-                    binding.clCard.visibility = View.VISIBLE
-                    binding.btnPlaceOrder.visibility = View.VISIBLE
-                }
+                cardVisibility(selectedItem)
             }
 
             override fun onNothingSelected(parent: AdapterView<*>?) {
-                binding.clCard.visibility = View.GONE
-            }
-
-            override fun onItemClick(
-                parent: AdapterView<*>?,
-                view: View?,
-                position: Int,
-                id: Long
-            ) {
+                cardVisibility(null)
             }
         }
+    }
+
+    private fun cardVisibility(selectedItem: String?) {
+        binding.clCard.visibility = if (selectedItem == "_") View.GONE else View.VISIBLE
+        binding.btnPlaceOrder.visibility = if (selectedItem == "_") View.GONE else View.VISIBLE
+
     }
 }

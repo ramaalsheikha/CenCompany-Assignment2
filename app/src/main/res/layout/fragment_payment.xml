@@ -94,7 +94,7 @@
                 app:layout_constraintTop_toBottomOf="@id/tv_phone_number" />
 
             <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/btn_continou"
+                android:id="@+id/btn_place_order_one"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="40dp"

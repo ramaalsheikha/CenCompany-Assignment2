@@ -33,11 +33,11 @@ class OrderSummaryFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        grtData()
+        getData()
         showInfo()
     }
 
-    private fun grtData() {
+    private fun getData() {
         paymentInfo = arguments?.getParcelable(getString(R.string.paymentinfo))!!
         orderInfo = arguments?.getParcelable(getString(R.string.orderinfo))!!
     }

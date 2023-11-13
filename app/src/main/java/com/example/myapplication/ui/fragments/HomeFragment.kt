@@ -10,6 +10,7 @@ import androidx.navigation.fragment.findNavController
 import com.example.myapplication.R
 import com.example.myapplication.constants.ErrorMessage
 import com.example.myapplication.constants.Key
+import com.example.myapplication.constants.NavigationIds
 import com.example.myapplication.databinding.FragmentHomeBinding
 
 class HomeFragment : Fragment() {
@@ -37,7 +38,7 @@ class HomeFragment : Fragment() {
 
     private fun navigateToOrderBuildingFragment() {
         try {
-            findNavController().navigate(R.id.orderBuildingFragment)
+            findNavController().navigate(NavigationIds.ORDER_BUILDING_FRAGMENT_ID)
         } catch (e: Exception) {
             ErrorMessage.logMessage(Key.HOME_FRAGMENT, e.message.toString())
             ErrorMessage.showErrorMessage(

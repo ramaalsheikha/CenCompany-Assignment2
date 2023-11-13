@@ -10,6 +10,7 @@ import androidx.navigation.fragment.findNavController
 import com.example.myapplication.R
 import com.example.myapplication.constants.ErrorMessage
 import com.example.myapplication.constants.Key
+import com.example.myapplication.constants.NavigationIds
 import com.example.myapplication.databinding.FragmentOrderBuildingBinding
 import com.example.myapplication.domine.OrderInfo
 
@@ -38,11 +39,11 @@ class OrderBuildingFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        setupIU()
+        setupUI()
         setupListener()
     }
 
-    private fun setupIU() {
+    private fun setupUI() {
         showCoffeeSize()
         showCheckBoxOptions()
     }
@@ -70,7 +71,7 @@ class OrderBuildingFragment : Fragment() {
         val bundle = Bundle().apply {
             putParcelable(getString(R.string.orderinfo), orderInfo)
         }
-        findNavController().navigate(R.id.paymentFragment, bundle)
+        findNavController().navigate(NavigationIds.PAYMENT_FRAGMENT_ID, bundle)
     }
 
     private fun showCoffeeSize() {
